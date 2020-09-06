@@ -7,6 +7,8 @@ import * as Schema from './schema';
 import * as Services from './services';
 import * as Test from './test/helper';
 
+console.log('node-library')
+
 export {
     Config,
     Controllers,
