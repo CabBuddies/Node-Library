@@ -4,7 +4,7 @@
   "description": "Node Library",
   "main": "src/index.ts",
   "scripts": {
-    "build": "tsc --build --clean",
+    "build": "tsc --module es2015",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
