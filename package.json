@@ -2,7 +2,7 @@
   "name": "node-library",
   "version": "1.0.0",
   "description": "Node Library",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,7 +20,7 @@
     "simple-encryptor": "^4.0.0",
     "ts-node": "^9.0.0"
   },
-  "typings": "./index.ts",
+  "typings": "./src/index.ts",
   "devDependencies": {
     "typescript": "^4.1.0-dev.20200905"
   }
