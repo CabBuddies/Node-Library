@@ -9,7 +9,7 @@ class BaseController implements Controler{
 
     service: Service;
 
-    constructor(service: Service){
+    constructor(service: Service = null){
         this.service = service;
     }
 

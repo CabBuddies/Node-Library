@@ -4,7 +4,7 @@ import Respository from './repository';
 class BaseRepository implements Respository{
     model : mongoose.Model<any,{}>;
     
-    constructor(model: mongoose.Model<any,{}>){
+    constructor(model: mongoose.Model<any,{}> = null){
         this.model = model;
     }
 

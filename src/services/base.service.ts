@@ -7,7 +7,7 @@ import * as PubSub from './pubsub';
 class BaseService implements Service,PubSub.Subscriber{
     repository : Repository;
 
-    constructor(repository : Repository){
+    constructor(repository : Repository = null){
         this.repository = repository;
     }
     
