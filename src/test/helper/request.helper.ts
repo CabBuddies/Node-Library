@@ -38,7 +38,7 @@ async function formattedApiRequest(packet : FormattedRequest) : Promise<{status:
     //packet.host = packet.host || config.HOST
     packet.path = packet.path || ''
     packet.headers = packet.headers || {}
-    //packet.url = packet.host+config.API_BASE+packet.path
+    packet.url = packet.host+packet.path
     packet.method = packet.method || 'get' 
     if(packet.token){
         packet.headers["authorization"] = packet.token.type+" "+packet.token.value
