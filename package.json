@@ -2,19 +2,15 @@
   "name": "node-library",
   "version": "1.0.1",
   "description": "Node Library",
-  "main": "src/index.ts",
+
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc --module es2015",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare": "npm run build",
+    "build": "tsc"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CabBuddies/Node-Library.git"
-  },
-  "keywords": [
-    "ts",
-    "typescript",
-    "ts-node"
+  "files": [
+    "lib"
   ],
   "author": "",
   "license": "MIT",
@@ -28,7 +24,9 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.3",
     "simple-encryptor": "^4.0.0",
-    "ts-node": "^9.0.0",
+    "ts-node": "^9.0.0"
+  },
+  "devDependencies": {
     "typescript": "^4.0.2"
   }
 }
