@@ -4,7 +4,7 @@ import Service from '../services/service';
 import Request from '../helpers/request.helper';
 declare class BaseController implements Controler {
     service: Service;
-    constructor(service: Service);
+    constructor(service?: Service);
     create: (req: express.Request, res: express.Response) => Promise<express.Response<any>>;
     get: (req: express.Request, res: express.Response) => Promise<express.Response<any>>;
     getAll: (req: express.Request, res: express.Response) => Promise<express.Response<any>>;

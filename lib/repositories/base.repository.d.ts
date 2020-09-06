@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose';
 import Respository from './repository';
 declare class BaseRepository implements Respository {
     model: mongoose.Model<any, {}>;
-    constructor(model: mongoose.Model<any, {}>);
+    constructor(model?: mongoose.Model<any, {}>);
     get: (id: any, attributes?: {
         password: number;
     }) => Promise<any>;

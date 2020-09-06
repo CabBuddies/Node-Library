@@ -4,7 +4,7 @@ import Request from '../helpers/request.helper';
 import * as PubSub from './pubsub';
 declare class BaseService implements Service, PubSub.Subscriber {
     repository: Repository;
-    constructor(repository: Repository);
+    constructor(repository?: Repository);
     eventListened(event: PubSub.Event): void;
     buildError(errorCode?: number, errorMessage?: string): {};
     get: (request: Request, entityId: any, attributes?: {}) => Promise<any>;
