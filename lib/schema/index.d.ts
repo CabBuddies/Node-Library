@@ -1,2 +1,3 @@
-import { accessSchema } from './access.schema';
-export { accessSchema };
+import accessSchema from './access.schema';
+import customAttributeSchema from './custom.attribute.schema';
+export { accessSchema, customAttributeSchema };

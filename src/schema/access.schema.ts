@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
 
 const accessSchema = new mongoose.Schema({
     //_id: mongoose.Schema.Types.ObjectId,
@@ -13,4 +13,4 @@ const accessSchema = new mongoose.Schema({
     }
 });
 
-export {accessSchema};
+export default accessSchema;
