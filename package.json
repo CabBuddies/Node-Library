@@ -2,7 +2,7 @@
   "name": "node-library",
   "version": "1.0.1",
   "description": "Node Library",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
     "build": "tsc --build --clean",
     "test": "echo \"Error: no test specified\" && exit 1"
