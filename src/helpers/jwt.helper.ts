@@ -37,7 +37,7 @@ const encodeToken = function(
 ) {
     decoded.expiryTime = Date.now()+(seconds*1000);
     return {
-        value: jwt.sign(decoded, getSecret(type), {'expiresIn':seconds+'s'}),
+        value: jwt.sign(decoded, getSecret(type)+'', {'expiresIn':seconds+'s'}),
         expiryTime : decoded.expiryTime
     };
 };
@@ -49,7 +49,7 @@ const decodeToken = function(
     }
     ) : Promise<Auth> {
     return new Promise(function(resolve, reject) {
-        jwt.verify(token.value,getSecret(token.type),function(err,decoded:Auth){
+        jwt.verify(token.value,getSecret(token.type)+'',function(err,decoded:Auth){
             if(err)
                 resolve(undefined);
             else

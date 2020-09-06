@@ -16,6 +16,7 @@ function extractToken(req:express.Request){
     } catch (error) {
         console.log(error.message)
     }
+    return null
 }
 
 function extractIP(req:express.Request){
@@ -24,8 +25,9 @@ function extractIP(req:express.Request){
         const ip = xForwardedFor || req.connection.remoteAddress;
         return req.ip||ip;
     } catch (error) {
-        
+        console.log(error.message)
     }
+    return null
 }
 
 function requestProcessor (repository : Repository){
