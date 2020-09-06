@@ -18,7 +18,9 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.3",
     "simple-encryptor": "^4.0.0",
-    "ts-node": "^9.0.0",
+    "ts-node": "^9.0.0"
+  },
+  "devDependencies": {
     "typescript": "^4.0.2"
   }
 }
