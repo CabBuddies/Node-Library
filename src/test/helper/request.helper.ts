@@ -21,14 +21,24 @@ interface FormattedRequest{
 
 async function apiRequest(packet : any) : Promise<{status:number,data:any}>{
     try {
+        console.log(packet);
         const response = await axios(packet)
         const {status,data} = response
         return {status,data}
     } catch (error) {
-        return {
-            status:error.response.data.status || 500,
-            data:{
-                error:error.response.data.message||'unknown server issue'
+        try {
+            return {
+                status:error.response.data.status || 500,
+                data:{
+                    error:error.response.data.message||'unknown server issue'
+                }
+            }
+        } catch (error) {
+            return {
+                status:500,
+                data:{
+                    error:'unknown server issue'
+                }
             }
         }
     }
