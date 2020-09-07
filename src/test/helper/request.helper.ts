@@ -23,6 +23,7 @@ async function apiRequest(packet : any) : Promise<{status:number,data:any}>{
     try {
         console.log(packet);
         const response = await axios(packet)
+        console.log('apiRequest',response);
         const {status,data} = response
         return {status,data}
     } catch (error) {
