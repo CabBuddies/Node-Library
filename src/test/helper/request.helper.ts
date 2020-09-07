@@ -26,12 +26,12 @@ async function apiRequest(packet : any) : Promise<{status:number,data:any}>{
         return new Promise<{status:number,data:any}>(function(resolve,reject){
             axios(packet)
             .then((response)=>{
-                console.log('apiRequest response',response);
+                //console.log('apiRequest response',response);
                 const {status,data} = response
                 resolve({status,data});
             })
             .catch((error)=>{
-                console.log('apiRequest error',error.response);
+                //console.log('apiRequest error',error.response);
                 const {status,data} = error.response
                 resolve({status,data});
             })
