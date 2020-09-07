@@ -26,19 +26,10 @@ async function apiRequest(packet : any) : Promise<{status:number,data:any}>{
         const {status,data} = response
         return {status,data}
     } catch (error) {
-        try {
-            return {
-                status:error.response.data.status || 500,
-                data:{
-                    error:error.response.data.message||'unknown server issue'
-                }
-            }
-        } catch (error) {
-            return {
-                status:500,
-                data:{
-                    error:'unknown server issue'
-                }
+        return {
+            status:error.response.status || 500,
+            data:{
+                message:error.response.message||'unknown server issue'
             }
         }
     }
