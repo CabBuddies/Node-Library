@@ -30,7 +30,7 @@ function extractIP(req:express.Request){
     return null
 }
 
-function requestProcessor (repository : Repository){
+function requestProcessor (repository : Repository = null){
     return async function ( req : express.Request , res : express.Response , next : express.NextFunction ){
         try {
             const request : Request = new Request();
