@@ -75,5 +75,9 @@ class BaseService implements Service,PubSub.Subscriber{
     deleteAll = async(request:Request) => {
         return await this.repository.deleteAll();
     }
+
+    isAuthor = async(entityId: string, universalId: string): Promise<boolean> => {
+        return await this.repository.isAuthor(entityId,universalId);
+    }
 }
 export default BaseService;
