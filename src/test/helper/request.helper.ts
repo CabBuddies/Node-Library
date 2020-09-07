@@ -22,10 +22,19 @@ interface FormattedRequest{
 async function apiRequest(packet : any) : Promise<{status:number,data:any}>{
     try {
         console.log(packet);
-        const response = await axios(packet)
-        console.log('apiRequest',response);
-        const {status,data} = response
-        return {status,data}
+
+        return new Promise<{status:number,data:any}>(function(resolve,reject){
+            axios(packet)
+            .then((response)=>{
+                const {status,data} = response
+                resolve({status,data});
+            })
+            .catch((error)=>{
+                const {status,message} = error
+                resolve({status,data:message});
+            })
+        });
+
     } catch (error) {
         return {
             status:error.response.status || 500,
