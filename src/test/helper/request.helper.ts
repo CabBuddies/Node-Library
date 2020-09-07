@@ -31,9 +31,9 @@ async function apiRequest(packet : any) : Promise<{status:number,data:any}>{
                 resolve({status,data});
             })
             .catch((error)=>{
-                console.log('apiRequest error',error);
-                const {status,message} = error
-                resolve({status,data:message});
+                console.log('apiRequest error',error.response);
+                const {status,data} = error.response
+                resolve({status,data});
             })
         });
 
