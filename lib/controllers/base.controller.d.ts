@@ -9,6 +9,7 @@ declare class BaseController implements Controler {
     get: (req: express.Request, res: express.Response) => Promise<express.Response<any>>;
     getAll: (req: express.Request, res: express.Response) => Promise<express.Response<any>>;
     update: (req: express.Request, res: express.Response) => Promise<express.Response<any>>;
+    updatePartial: (req: express.Request, res: express.Response) => Promise<express.Response<any>>;
     delete: (req: express.Request, res: express.Response) => Promise<express.Response<any>>;
     deleteAll: (req: express.Request, res: express.Response) => Promise<express.Response<any>>;
 }

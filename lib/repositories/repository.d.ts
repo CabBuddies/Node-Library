@@ -5,6 +5,7 @@ export default interface Repository {
     getAll: Function;
     create: Function;
     update: Function;
+    updatePartial: Function;
     delete: Function;
     [propName: string]: any;
 }

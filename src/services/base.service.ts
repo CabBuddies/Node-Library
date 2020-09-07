@@ -56,6 +56,14 @@ class BaseService implements Service,PubSub.Subscriber{
         return await this.repository.update(entityId, entity);
     }
 
+    updatePartial = async(request:Request, entityId, partial) => {
+        if(!entityId){
+            throw this.buildError(400,"entityId is required.");
+        }
+
+        return await this.repository.updatePartial(entityId, partial);
+    }
+
     delete = async(request:Request, entityId) => {
         if(!entityId){
             throw this.buildError(400,"entityId is required.");

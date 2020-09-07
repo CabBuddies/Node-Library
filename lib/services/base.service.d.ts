@@ -11,6 +11,7 @@ declare class BaseService implements Service, PubSub.Subscriber {
     getAll: (request: Request, query?: {}, pageSize?: number, pageNum?: number, attributes?: {}) => Promise<any>;
     create: (request: Request, entity: any) => Promise<any>;
     update: (request: Request, entityId: any, entity: any) => Promise<any>;
+    updatePartial: (request: Request, entityId: any, partial: any) => Promise<any>;
     delete: (request: Request, entityId: any) => Promise<any>;
     deleteAll: (request: Request) => Promise<any>;
 }

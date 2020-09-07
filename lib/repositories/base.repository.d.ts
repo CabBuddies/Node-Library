@@ -16,6 +16,7 @@ declare class BaseRepository implements Respository {
     }>;
     create: (entity: any) => Promise<any>;
     update: (id: any, entity: any) => Promise<any>;
+    updatePartial: (id: any, partial: any) => Promise<any>;
     delete: (id: any) => Promise<any>;
     deleteAll: () => Promise<{
         ok?: number;

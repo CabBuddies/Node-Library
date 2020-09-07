@@ -53,6 +53,16 @@ class BaseController implements Controler{
         return res.send(updatedEntity);
     }
 
+    updatePartial = async(req : express.Request , res : express.Response) => {
+        const request : Request = res.locals.request;
+        const entityId = req.params.id; 
+        const body = req.body; 
+
+        const updatedEntity = await this.service.updatePartial(request, entityId, body);
+
+        return res.send(updatedEntity);
+    }
+
     delete = async(req : express.Request , res : express.Response) => {
         const request : Request = res.locals.request;
         const entityId = req.params.id; 

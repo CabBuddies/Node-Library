@@ -6,5 +6,6 @@ export default interface Controller{
     getAll? : Function,
     create? : Function,
     update? : Function,
+    updatePartial? : Function,
     delete? : Function
 }
