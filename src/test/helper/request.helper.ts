@@ -29,6 +29,7 @@ async function apiRequest(packet : any) : Promise<{status:number,data:any}>{
         return {
             status:error.response.status || 500,
             data:{
+                raw:JSON.parse(JSON.stringify(error)),
                 message:error.response.message||'unknown server issue'
             }
         }
