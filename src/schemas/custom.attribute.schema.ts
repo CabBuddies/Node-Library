@@ -1,5 +1,4 @@
 import * as mongoose from 'mongoose';
-import { Schema } from '..';
 
 const customAttributeSchema = new mongoose.Schema({
     key:{
