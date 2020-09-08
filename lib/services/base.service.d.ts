@@ -14,6 +14,5 @@ declare class BaseService implements Service, PubSub.Subscriber {
     updatePartial: (request: Request, entityId: any, partial: any) => Promise<any>;
     delete: (request: Request, entityId: any) => Promise<any>;
     deleteAll: (request: Request) => Promise<any>;
-    isAuthor: (entityId: string, universalId: string) => Promise<boolean>;
 }
 export default BaseService;

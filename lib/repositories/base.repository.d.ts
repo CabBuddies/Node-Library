@@ -24,6 +24,5 @@ declare class BaseRepository implements Respository {
     } & {
         deletedCount?: number;
     }>;
-    isAuthor: (entityId: string, universalId: string) => Promise<boolean>;
 }
 export default BaseRepository;

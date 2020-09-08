@@ -56,10 +56,6 @@ class BaseRepository implements Respository{
     deleteAll = async() => {
         return await this.model.deleteMany({});
     }
-
-    isAuthor = async(entityId: string, universalId: string): Promise<boolean> => {
-        return (await this.model.count({_id:entityId,author:universalId})) === 1;
-    }
 }
 
 export default BaseRepository;
