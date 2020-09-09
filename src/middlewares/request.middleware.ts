@@ -49,10 +49,9 @@ function requestProcessor (service : Service = null){
                     try {
                         if(service){
                             if(request.getTokenType()==='refresh'){
-                                activeTokenCount = await service.getActiveRefreshTokenCount(request.getTokenValue());
+                                activeTokenCount = await service.getActiveRefreshTokenCount(request);
                             }
                         }
-                        
                     } catch (error) {
                         console.log(error.message)
                     }
