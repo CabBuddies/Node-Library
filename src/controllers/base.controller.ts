@@ -13,7 +13,7 @@ class BaseController implements Controler{
         this.service = service;
     }
 
-    create  = async(req : express.Request , res : express.Response) => {
+    create : any = async(req : express.Request , res : express.Response) => {
         const request : Request = res.locals.request;
         const body = req.body; 
 
@@ -22,14 +22,14 @@ class BaseController implements Controler{
         return res.send(createdEntity);
     } 
 
-    get = async(req : express.Request , res : express.Response) => {
+    get : any = async(req : express.Request , res : express.Response) => {
         const request : Request = res.locals.request;
         const entityId = req.params.id; 
         const entity = await this.service.get(request, entityId);
         return res.send(entity);
     }
 
-    getAll = async(req : express.Request , res : express.Response) => {
+    getAll : any = async(req : express.Request , res : express.Response) => {
         const request : Request = res.locals.request;
 
         const pageSize :number = parseInt(req.query.pageSize+'') || 5
@@ -43,7 +43,7 @@ class BaseController implements Controler{
         return res.send(result);
     }
 
-    update = async(req : express.Request , res : express.Response) => {
+    update : any = async(req : express.Request , res : express.Response) => {
         const request : Request = res.locals.request;
         const entityId = req.params.id; 
         const body = req.body; 
@@ -53,7 +53,7 @@ class BaseController implements Controler{
         return res.send(updatedEntity);
     }
 
-    updatePartial = async(req : express.Request , res : express.Response) => {
+    updatePartial : any = async(req : express.Request , res : express.Response) => {
         const request : Request = res.locals.request;
         const entityId = req.params.id; 
         const body = req.body; 
@@ -63,14 +63,14 @@ class BaseController implements Controler{
         return res.send(updatedEntity);
     }
 
-    delete = async(req : express.Request , res : express.Response) => {
+    delete : any = async(req : express.Request , res : express.Response) => {
         const request : Request = res.locals.request;
         const entityId = req.params.id; 
         const deletedEntity = await this.service.delete(request, entityId);
         return res.send(deletedEntity);
     }
 
-    deleteAll = async(req : express.Request , res : express.Response) => {
+    deleteAll : any = async(req : express.Request , res : express.Response) => {
         const request : Request = res.locals.request;
         const deletedEntities = await this.service.deleteAll(request);
         return res.send(deletedEntities);

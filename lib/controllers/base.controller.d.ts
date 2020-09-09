@@ -1,16 +1,14 @@
-import * as express from 'express';
 import Controler from './controller';
 import Service from '../services/service';
-import Request from '../helpers/request.helper';
 declare class BaseController implements Controler {
     service: Service;
     constructor(service?: Service);
-    create: (req: express.Request, res: express.Response) => Promise<express.Response<any>>;
-    get: (req: express.Request, res: express.Response) => Promise<express.Response<any>>;
-    getAll: (req: express.Request, res: express.Response) => Promise<express.Response<any>>;
-    update: (req: express.Request, res: express.Response) => Promise<express.Response<any>>;
-    updatePartial: (req: express.Request, res: express.Response) => Promise<express.Response<any>>;
-    delete: (req: express.Request, res: express.Response) => Promise<express.Response<any>>;
-    deleteAll: (req: express.Request, res: express.Response) => Promise<express.Response<any>>;
+    create: any;
+    get: any;
+    getAll: any;
+    update: any;
+    updatePartial: any;
+    delete: any;
+    deleteAll: any;
 }
 export default BaseController;

@@ -1,10 +1,11 @@
+import * as express from 'express';
 import Service from '../services/service';
 export default interface Controller {
     service?: Service;
-    get?: Function;
-    getAll?: Function;
-    create?: Function;
-    update?: Function;
-    updatePartial?: Function;
-    delete?: Function;
+    get?: express.Application;
+    getAll?: express.Application;
+    create?: express.Application;
+    update?: express.Application;
+    updatePartial?: express.Application;
+    delete?: express.Application;
 }
