@@ -11,8 +11,8 @@ class BaseService implements Service,PubSub.Subscriber{
         this.repository = repository;
     }
     
-    eventListened(event: PubSub.Event) {
-        console.log(event);
+    messageSent(message: PubSub.Message) {
+        console.log(message);
     }
 
     buildError(errorCode = 500,errorMessage = "Unknown Server Error."){

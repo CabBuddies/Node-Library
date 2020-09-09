@@ -1,22 +1,22 @@
 import Request from '../../helpers/request.helper';
-interface Event {
+interface Message {
     request: Request;
     type: string;
     metadata?: any;
     data: any;
 }
 interface Subscriber {
-    eventListened(event: Event): any;
+    messageSent(message: Message): any;
 }
 interface Subscription {
     [key: string]: Subscriber[];
 }
 declare class Main {
     subscription: Subscription;
-    addSubscriberAll: (eventTypes: any, subscriber: Subscriber) => void;
-    addSubscriber: (eventType: string, subscriber: Subscriber) => void;
-    removeSubscriber: (eventType: string, subscriber: Subscriber) => void;
-    publishEvent: (event: Event) => Promise<string>;
+    addSubscriberAll: (messageTypes: any, subscriber: Subscriber) => void;
+    addSubscriber: (messageType: string, subscriber: Subscriber) => void;
+    removeSubscriber: (messageType: string, subscriber: Subscriber) => void;
+    publishMessage: (message: Message) => Promise<string>;
 }
 declare const Organizer: Main;
-export { Event, Subscriber, Organizer };
+export { Message, Subscriber, Organizer };

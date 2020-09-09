@@ -1,6 +1,6 @@
 import Request from '../../helpers/request.helper';
 
-interface Event{
+interface Message{
     request:Request,
     type:string,
     metadata?:any,
@@ -8,7 +8,7 @@ interface Event{
 }
 
 interface Subscriber{
-    eventListened(event:Event) : any
+    messageSent(message:Message) : any
 }
 
 interface Subscription{
@@ -21,13 +21,13 @@ class Main{
 
     subscription : Subscription = {};
 
-    addSubscriberAll = (eventTypes:any, subscriber:Subscriber) => {
+    addSubscriberAll = (messageTypes:any, subscriber:Subscriber) => {
         const topics = [];
-        for(const k of Object.keys(eventTypes)){
-            if(typeof eventTypes[k] === typeof 's'){
-                topics.push(eventTypes[k]);
+        for(const k of Object.keys(messageTypes)){
+            if(typeof messageTypes[k] === typeof 's'){
+                topics.push(messageTypes[k]);
             }else{
-                this.addSubscriberAll(eventTypes[k],subscriber);
+                this.addSubscriberAll(messageTypes[k],subscriber);
             }
         }
         for(const t of topics){
@@ -35,28 +35,28 @@ class Main{
         }
     }
 
-    addSubscriber = (eventType:string, subscriber:Subscriber) => {
-        if(eventType in this.subscription === false){
-            this.subscription[eventType] = []
+    addSubscriber = (messageType:string, subscriber:Subscriber) => {
+        if(messageType in this.subscription === false){
+            this.subscription[messageType] = []
         }
-        this.subscription[eventType].push(subscriber);
+        this.subscription[messageType].push(subscriber);
     }
 
-    removeSubscriber = (eventType:string, subscriber:Subscriber) => {
-        this.subscription[eventType] = this.subscription[eventType].filter(
+    removeSubscriber = (messageType:string, subscriber:Subscriber) => {
+        this.subscription[messageType] = this.subscription[messageType].filter(
             function(value:Subscriber, index, arr){
                 return value!=subscriber;
             }
         );
     }
 
-    publishEvent = async(event:Event) => {
-        console.log('PubSub',event,this.subscription);
+    publishMessage = async(message:Message) => {
+        console.log('PubSub',message,this.subscription);
         var sub = this.subscription;
         return await new Promise<string>(function(resolve,reject){
-            for(const subscriber of sub[event.type]){
+            for(const subscriber of sub[message.type]){
                 try {
-                    subscriber.eventListened(event)
+                    subscriber.messageSent(message)
                 } catch (error) {
                     console.log(error)
                 }
@@ -70,7 +70,7 @@ class Main{
 const Organizer = new Main();
 
 export {
-    Event,
+    Message,
     Subscriber,
     Organizer
 }
