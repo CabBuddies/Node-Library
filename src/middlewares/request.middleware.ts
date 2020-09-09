@@ -1,6 +1,6 @@
 import * as express from 'express';
 import Request from '../helpers/request.helper';
-import {Repository} from '../repositories'
+import {Service} from '../services'
 import * as jwtHelper from '../helpers/jwt.helper';
 
 function extractToken(req:express.Request){
@@ -30,7 +30,7 @@ function extractIP(req:express.Request){
     return null
 }
 
-function requestProcessor (repository : Repository = null){
+function requestProcessor (service : Service = null){
     return async function ( req : express.Request , res : express.Response , next : express.NextFunction ){
         try {
             const request : Request = new Request();
@@ -47,10 +47,12 @@ function requestProcessor (repository : Repository = null){
                     let activeTokenCount = 1;
     
                     try {
-                        if(repository)
-                        if(request.getTokenType()==='refresh'){
-                            activeTokenCount = await repository.getActiveRefreshTokenCount(request.getTokenValue());
+                        if(service){
+                            if(request.getTokenType()==='refresh'){
+                                activeTokenCount = await service.getActiveRefreshTokenCount(request.getTokenValue());
+                            }
                         }
+                        
                     } catch (error) {
                         console.log(error.message)
                     }
