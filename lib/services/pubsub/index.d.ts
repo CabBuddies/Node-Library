@@ -6,7 +6,7 @@ interface Message {
     data: any;
 }
 interface Subscriber {
-    messageSent(message: Message): any;
+    processMessage(message: Message): any;
 }
 interface Subscription {
     [key: string]: Subscriber[];

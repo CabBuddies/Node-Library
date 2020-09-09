@@ -11,7 +11,7 @@ class BaseService implements Service,PubSub.Subscriber{
         this.repository = repository;
     }
     
-    messageSent(message: PubSub.Message) {
+    processMessage(message: PubSub.Message) {
         console.log(message);
     }
 

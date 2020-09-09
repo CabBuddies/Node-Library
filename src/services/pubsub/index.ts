@@ -8,7 +8,7 @@ interface Message{
 }
 
 interface Subscriber{
-    messageSent(message:Message) : any
+    processMessage(message:Message) : any
 }
 
 interface Subscription{
@@ -56,7 +56,7 @@ class Main{
         return await new Promise<string>(function(resolve,reject){
             for(const subscriber of sub[message.type]){
                 try {
-                    subscriber.messageSent(message)
+                    subscriber.processMessage(message)
                 } catch (error) {
                     console.log(error)
                 }
