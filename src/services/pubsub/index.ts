@@ -21,6 +21,20 @@ class Main{
 
     subscription : Subscription = {};
 
+    addSubscriberAll = (eventTypes:any, subscriber:Subscriber) => {
+        const topics = [];
+        for(const k of Object.keys(eventTypes)){
+            if(typeof eventTypes[k] === typeof 's'){
+                topics.push(eventTypes[k]);
+            }else{
+                this.addSubscriberAll(eventTypes[k],subscriber);
+            }
+        }
+        for(const t of topics){
+            this.addSubscriber(t,subscriber);
+        }
+    }
+
     addSubscriber = (eventType:string, subscriber:Subscriber) => {
         if(eventType in this.subscription === false){
             this.subscription[eventType] = []

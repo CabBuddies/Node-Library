@@ -13,6 +13,7 @@ interface Subscription {
 }
 declare class Main {
     subscription: Subscription;
+    addSubscriberAll: (eventTypes: any, subscriber: Subscriber) => void;
     addSubscriber: (eventType: string, subscriber: Subscriber) => void;
     removeSubscriber: (eventType: string, subscriber: Subscriber) => void;
     publishEvent: (event: Event) => Promise<string>;
