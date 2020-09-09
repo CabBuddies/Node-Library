@@ -8,16 +8,6 @@ const simpleAccessSchema = new mongoose.Schema({
         type:Boolean,
         default:true
     },
-    accessOf:{
-        type:{
-            type:String,
-            required:'accessOf.type is required'
-        },
-        refId:{
-            type:mongoose.Schema.Types.ObjectId,
-            required:'refId is required'
-        }
-    },
     createdAt:{
         type: Date,
         default: Date.now
@@ -25,11 +15,6 @@ const simpleAccessSchema = new mongoose.Schema({
     lastModifiedAt:{
         type: Date,
         default: Date.now
-    },
-    accessGroup:{
-        type: String, 
-        enum : ['user', 'group'], 
-        default: 'group'
     },
     accessGroupType:{
         type: String, 
