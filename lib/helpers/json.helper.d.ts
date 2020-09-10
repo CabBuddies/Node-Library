@@ -1,2 +1,2 @@
-declare function normalizeJson(json: any): {};
+declare function normalizeJson(json: any): any;
 export { normalizeJson };
