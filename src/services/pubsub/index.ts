@@ -55,12 +55,16 @@ class Main{
         var sub = this.subscription;
         return await new Promise<any>(async function(resolve,reject){
             const result = [];
-            for(const subscriber of sub[message.type]){
-                try {
-                    result.push(await subscriber.processMessage(message));
-                } catch (error) {
-                    console.log(error)
+            try {
+                for(const subscriber of sub[message.type]){
+                    try {
+                        result.push(await subscriber.processMessage(message));
+                    } catch (error) {
+                        console.log(error)
+                    }
                 }
+            } catch (error) {
+                console.log(error);
             }
             resolve(result);
         });
