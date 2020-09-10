@@ -1,6 +1,10 @@
 import * as mongoose from 'mongoose';
 
 const simpleAccessSchema = new mongoose.Schema({
+    id:{
+        type:Number,
+        default: Date.now()
+    },
     users:[{
         type:mongoose.Schema.Types.ObjectId
     }],
