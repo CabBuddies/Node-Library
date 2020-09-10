@@ -4,7 +4,8 @@ interface Message{
     request:Request,
     type:string,
     metadata?:any,
-    data:any
+    data:any,
+    callback?:Function
 }
 
 interface Subscriber{

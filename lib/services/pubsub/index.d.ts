@@ -4,6 +4,7 @@ interface Message {
     type: string;
     metadata?: any;
     data: any;
+    callback?: Function;
 }
 interface Subscriber {
     processMessage(message: Message): any;
