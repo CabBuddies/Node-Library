@@ -46,7 +46,7 @@ class BaseRepository implements Respository{
     }
 
     updatePartial = async(id, partial) => {
-        return await this.model.findByIdAndUpdate(id, {$set:partial});
+        return await this.model.findByIdAndUpdate(id, {$set:partial}, {new: true});
     }
 
     delete = async(id) => {
