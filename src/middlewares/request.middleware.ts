@@ -32,12 +32,16 @@ function extractIP(req:express.Request){
 
 function requestProcessor (service : Service = null){
     return async function ( req : express.Request , res : express.Response , next : express.NextFunction ){
+        console.log('middleware','requestProcessor','begin');
         try {
             const request : Request = new Request();
+            console.log('middleware','requestProcessor',request);
     
             request.setIP(extractIP(req));
             const token = extractToken(req);
             request.setToken(token);
+
+            console.log('middleware','requestProcessor',request);
         
             if(request.hasToken){
                 const decoded :jwtHelper.Auth = await jwtHelper.decodeToken(request.getToken());
@@ -65,12 +69,14 @@ function requestProcessor (service : Service = null){
     
                 }
             }
+
+            console.log('middleware','requestProcessor','almost done',request);
         
             res.locals={request}
             next()
         } catch (error) {
-            console.log(error)
-            res.sendStatus(500)
+            console.log('middleware','requestProcessor',error)
+            res.send(500).send('unknown issue');
         }
     }
 }
