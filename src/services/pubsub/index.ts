@@ -4,12 +4,11 @@ interface Message{
     request:Request,
     type:string,
     metadata?:any,
-    data:any,
-    callback?:Function
+    data:any
 }
 
 interface Subscriber{
-    processMessage(message:Message) : any
+    processMessage(message:Message) : Promise<Message>
 }
 
 interface Subscription{
@@ -54,15 +53,16 @@ class Main{
     publishMessage = async(message:Message) => {
         console.log('PubSub',message,this.subscription);
         var sub = this.subscription;
-        return await new Promise<string>(function(resolve,reject){
+        return await new Promise<any>(async function(resolve,reject){
+            const result = [];
             for(const subscriber of sub[message.type]){
                 try {
-                    subscriber.processMessage(message)
+                    result.push(await subscriber.processMessage(message));
                 } catch (error) {
                     console.log(error)
                 }
             }
-            resolve('done')
+            resolve(result);
         });
     }
 

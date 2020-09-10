@@ -5,7 +5,7 @@ import * as PubSub from './pubsub';
 declare class BaseService implements Service, PubSub.Subscriber {
     repository: Repository;
     constructor(repository?: Repository);
-    processMessage(message: PubSub.Message): void;
+    processMessage(message: PubSub.Message): Promise<PubSub.Message>;
     buildError(errorCode?: number, errorMessage?: string): {};
     get: (request: Request, entityId: any, attributes?: {}) => Promise<any>;
     getAll: (request: Request, query?: {}, pageSize?: number, pageNum?: number, attributes?: {}) => Promise<any>;
