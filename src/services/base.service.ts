@@ -11,7 +11,7 @@ class BaseService implements Service,PubSub.Subscriber{
         this.repository = repository;
     }
     
-    async processMessage(message: PubSub.Message){
+    processMessage(message: PubSub.Message) : any{
         console.log(message);
     }
 

@@ -8,7 +8,7 @@ interface Message{
 }
 
 interface Subscriber{
-    processMessage(message:Message)
+    processMessage(message:Message) : any
 }
 
 interface Subscription{
