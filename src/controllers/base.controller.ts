@@ -22,6 +22,7 @@ class BaseController implements Controler{
 
             return res.send(createdEntity);
         } catch (error) {
+            console.log(error);
             if(error.status && error.message){
                 return res.status(error.status).send(error.message);
             }
@@ -36,6 +37,7 @@ class BaseController implements Controler{
             const entity = await this.service.get(request, entityId);
             return res.send(entity);
         } catch (error) {
+            console.log(error);
             if(error.status && error.message){
                 return res.status(error.status).send(error.message);
             }
@@ -57,6 +59,7 @@ class BaseController implements Controler{
             const result = await this.service.getAll(request, query, pageSize, pageNum, attributes);
             return res.send(result);
         } catch (error) {
+            console.log(error);
             if(error.status && error.message){
                 return res.status(error.status).send(error.message);
             }
@@ -74,6 +77,7 @@ class BaseController implements Controler{
 
             return res.send(updatedEntity);
         } catch (error) {
+            console.log(error);
             if(error.status && error.message){
                 return res.status(error.status).send(error.message);
             }
@@ -91,6 +95,7 @@ class BaseController implements Controler{
 
             return res.send(updatedEntity);
         } catch (error) {
+            console.log(error);
             if(error.status && error.message){
                 return res.status(error.status).send(error.message);
             }
@@ -105,6 +110,7 @@ class BaseController implements Controler{
             const deletedEntity = await this.service.delete(request, entityId);
             return res.send(deletedEntity);
         } catch (error) {
+            console.log(error);
             if(error.status && error.message){
                 return res.status(error.status).send(error.message);
             }
@@ -118,6 +124,7 @@ class BaseController implements Controler{
             const deletedEntities = await this.service.deleteAll(request);
             return res.send(deletedEntities);
         } catch (error) {
+            console.log(error);
             if(error.status && error.message){
                 return res.status(error.status).send(error.message);
             }
