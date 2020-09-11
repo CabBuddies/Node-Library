@@ -8,7 +8,7 @@ interface Message{
 }
 
 interface Subscriber{
-    processMessage(message:Message) : Promise<Message>
+    processMessage(message:Message)
 }
 
 interface Subscription{
@@ -50,15 +50,14 @@ class Main{
         );
     }
 
-    publishMessage = async(message:Message) => {
+    publishMessage = (message:Message) => {
         console.log('PubSub',message,this.subscription);
         var sub = this.subscription;
-        return await new Promise<any>(async function(resolve,reject){
-            const result = [];
+        new Promise<any>(function(resolve,reject){
             try {
                 for(const subscriber of sub[message.type]){
                     try {
-                        result.push(await subscriber.processMessage(message));
+                        subscriber.processMessage(message);
                     } catch (error) {
                         console.log(error)
                     }
@@ -66,7 +65,6 @@ class Main{
             } catch (error) {
                 console.log(error);
             }
-            resolve(result);
         });
     }
 

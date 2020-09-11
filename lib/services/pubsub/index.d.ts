@@ -6,7 +6,7 @@ interface Message {
     data: any;
 }
 interface Subscriber {
-    processMessage(message: Message): Promise<Message>;
+    processMessage(message: Message): any;
 }
 interface Subscription {
     [key: string]: Subscriber[];
@@ -16,7 +16,7 @@ declare class Main {
     addSubscriberAll: (messageTypes: any, subscriber: Subscriber) => void;
     addSubscriber: (messageType: string, subscriber: Subscriber) => void;
     removeSubscriber: (messageType: string, subscriber: Subscriber) => void;
-    publishMessage: (message: Message) => Promise<any>;
+    publishMessage: (message: Message) => void;
 }
 declare const Organizer: Main;
 export { Message, Subscriber, Organizer };

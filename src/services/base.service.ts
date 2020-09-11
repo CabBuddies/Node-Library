@@ -11,11 +11,8 @@ class BaseService implements Service,PubSub.Subscriber{
         this.repository = repository;
     }
     
-    async processMessage(message: PubSub.Message) : Promise<PubSub.Message>{
+    async processMessage(message: PubSub.Message){
         console.log(message);
-        return new Promise<PubSub.Message>(function(resolve,reject){
-            resolve(null);
-        });
     }
 
     buildError(errorCode = 500,errorMessage = "Unknown Server Error."){
