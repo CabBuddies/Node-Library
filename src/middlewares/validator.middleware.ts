@@ -96,6 +96,17 @@ function checkMinMax(data,min,max,genericError){
     }
 }
 
+function anyValidate(vs:ValidationSchema){
+    vs.name = vs.name||'{property}';
+    let genericError = "Invalid "+vs.name+"["+vs.data+"]";
+
+    if(vs.defaultValue){
+        vs.data = vs.data || vs.defaultValue;
+    }
+
+    return vs.data;
+}
+
 function numberValidator(vs:ValidationSchema){
     //console.log('numberValidator',{name,data,equal,min,max,anyOf})
     vs.name = vs.name||'{property}';
@@ -232,7 +243,7 @@ function validateProperty(i:ValidationSchema){
         result = stringValidate(i);
         break;
     default:
-        result = i.data;
+        result = anyValidate(i);
   }
   return result;
 }
