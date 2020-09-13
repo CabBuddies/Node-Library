@@ -44,7 +44,7 @@ function typeCheck(vts:ValidationTypeSchema){
     if(vts.data.constructor.name.toLowerCase() === 'array'){
       return vts.data;
     }
-    throwErrorMessage(genericError+": actual type:"+vts.data.constructor.name+", expected type:array")
+    throwErrorMessage(genericError+": actual type:"+vts.data.constructor.name.toLowerCase()+", expected type:array")
   }
   if(typeof vts.data !== vts.type){
       throwErrorMessage(genericError+": actual type:"+(typeof vts.data)+", expected type:"+vts.type)
@@ -196,12 +196,13 @@ function arrayValidate(vs:ValidationSchema){
 
   }
 
-  if(vs.array_item_type){
-    for(let i in vs.data){
-        const temp = vs;
-        temp.data = vs.data[i];
-        vs.data[i] = validateProperty(temp);
-    }
+  vs.array_item_type = vs.array_item_type || 'any';
+
+  for(let i in vs.data){
+    const temp = vs;
+    temp.data = vs.data[i];
+    temp.type = vs.array_item_type;
+    vs.data[i] = validateProperty(temp);
   }
 
   if(vs.array_normalize){
