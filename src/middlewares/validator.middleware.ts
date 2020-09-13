@@ -229,8 +229,9 @@ function validateProperty(i:ValidationSchema){
       result = numberValidator(i);
       break;
     case 'string':
+        result = stringValidate(i);
     default:
-      result = stringValidate(i);
+        result = i.data;
   }
   return result;
 }
