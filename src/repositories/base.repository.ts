@@ -8,14 +8,12 @@ class BaseRepository implements Respository{
         this.model = model;
     }
 
-    get = async(id,attributes = {password:0}) => {
-        console.log('base.repository ',id,new mongoose.Types.ObjectId(id))
-        return await this.model.findById(
-            new mongoose.Types.ObjectId(id)
-        ).select(attributes);
+    get = async(documentId:string ,attributes = {password:0}) => {
+        console.log('base.repository ',documentId)
+        return await this.model.findById(documentId).select(attributes);
     }
 
-    getAll = async(query = {}, pageSize : number = 5, pageNum : number = 1, attributes:any={'password':0}) => {
+    getAll = async(query = {}, sort = {}, pageSize : number = 5, pageNum : number = 1, attributes:any={'password':0}) => {
         //skip - limit
         const skips = pageSize * (pageNum - 1)
         console.log(query,pageSize,pageNum)
@@ -23,7 +21,7 @@ class BaseRepository implements Respository{
         let result = [];
         if(resultTotalSize > 0){
             console.log('base.repository',query);
-            result = await this.model.find(query).skip(skips).limit(pageSize).select(attributes);
+            result = await this.model.find(query).sort(sort).skip(skips).limit(pageSize).select(attributes);
         }
         const resultSize = result.length
         console.log(result)
@@ -37,20 +35,20 @@ class BaseRepository implements Respository{
         }
     }
 
-    create = async(entity) => {
-        return await this.model.create(entity);
+    create = async(document:any) => {
+        return await this.model.create(document);
     }
 
-    update = async(id, entity) => {
-        return await this.model.findByIdAndUpdate(id, entity, {new: true});
+    update = async(documentId:string , document) => {
+        return await this.model.findByIdAndUpdate(documentId, document, {new: true});
     }
 
-    updatePartial = async(id, partial) => {
-        return await this.model.findByIdAndUpdate(id, {$set:partial}, {new: true});
+    updatePartial = async(documentId:string , partial:any) => {
+        return await this.model.findByIdAndUpdate(documentId, {$set:partial}, {new: true});
     }
 
-    delete = async(id) => {
-        return await this.model.findByIdAndDelete(id);
+    delete = async(documentId:string) => {
+        return await this.model.findByIdAndDelete(documentId);
     }
 
     deleteAll = async() => {

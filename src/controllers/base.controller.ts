@@ -18,9 +18,9 @@ class BaseController implements Controler{
             const request : Request = res.locals.request;
             const body = req.body; 
 
-            const createdEntity = await this.service.create(request, body);
+            const createddocument = await this.service.create(request, body);
 
-            return res.send(createdEntity);
+            return res.send(createddocument);
         } catch (error) {
             console.log(error);
             if(error.status && error.message){
@@ -33,9 +33,10 @@ class BaseController implements Controler{
     get : any = async(req : express.Request , res : express.Response) => {
         try {
             const request : Request = res.locals.request;
-            const entityId = req.params.id; 
-            const entity = await this.service.get(request, entityId);
-            return res.send(entity);
+            const documentId = req.params.id; 
+            const attributes = req.body.attributes;
+            const document = await this.service.get(request, documentId, attributes);
+            return res.send(document);
         } catch (error) {
             console.log(error);
             if(error.status && error.message){
@@ -53,10 +54,11 @@ class BaseController implements Controler{
             const pageNum :number = parseInt(req.query.pageNum+'') || 1
             
             const query = req.body.query
+            const sort = req.body.sort
 
             const attributes = undefined
 
-            const result = await this.service.getAll(request, query, pageSize, pageNum, attributes);
+            const result = await this.service.getAll(request, query, sort, pageSize, pageNum, attributes);
             return res.send(result);
         } catch (error) {
             console.log(error);
@@ -70,12 +72,12 @@ class BaseController implements Controler{
     update : any = async(req : express.Request , res : express.Response) => {
         try {
             const request : Request = res.locals.request;
-            const entityId = req.params.id; 
+            const documentId = req.params.id; 
             const body = req.body; 
 
-            const updatedEntity = await this.service.update(request, entityId, body);
+            const updateddocument = await this.service.update(request, documentId, body);
 
-            return res.send(updatedEntity);
+            return res.send(updateddocument);
         } catch (error) {
             console.log(error);
             if(error.status && error.message){
@@ -88,12 +90,12 @@ class BaseController implements Controler{
     updatePartial : any = async(req : express.Request , res : express.Response) => {
         try {
             const request : Request = res.locals.request;
-            const entityId = req.params.id; 
+            const documentId = req.params.id; 
             const body = req.body; 
 
-            const updatedEntity = await this.service.updatePartial(request, entityId, body);
+            const updateddocument = await this.service.updatePartial(request, documentId, body);
 
-            return res.send(updatedEntity);
+            return res.send(updateddocument);
         } catch (error) {
             console.log(error);
             if(error.status && error.message){
@@ -106,9 +108,9 @@ class BaseController implements Controler{
     delete : any = async(req : express.Request , res : express.Response) => {
         try {
             const request : Request = res.locals.request;
-            const entityId = req.params.id; 
-            const deletedEntity = await this.service.delete(request, entityId);
-            return res.send(deletedEntity);
+            const documentId = req.params.id; 
+            const deleteddocument = await this.service.delete(request, documentId);
+            return res.send(deleteddocument);
         } catch (error) {
             console.log(error);
             if(error.status && error.message){

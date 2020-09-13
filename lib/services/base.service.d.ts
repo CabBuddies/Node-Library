@@ -7,12 +7,19 @@ declare class BaseService implements Service, PubSub.Subscriber {
     constructor(repository?: Repository);
     processMessage(message: PubSub.Message): any;
     buildError(errorCode?: number, errorMessage?: string): {};
-    get: (request: Request, entityId: any, attributes?: {}) => Promise<any>;
-    getAll: (request: Request, query?: {}, pageSize?: number, pageNum?: number, attributes?: {}) => Promise<any>;
-    create: (request: Request, entity: any) => Promise<any>;
-    update: (request: Request, entityId: any, entity: any) => Promise<any>;
-    updatePartial: (request: Request, entityId: any, partial: any) => Promise<any>;
-    delete: (request: Request, entityId: any) => Promise<any>;
+    get: (request: Request, documentId: string, attributes?: {}) => Promise<any>;
+    getAll: (request: Request, query?: {}, sort?: {}, pageSize?: number, pageNum?: number, attributes?: {}) => Promise<{
+        query: any;
+        pageSize: number;
+        pageNum: number;
+        resultSize: number;
+        resultTotalSize: number;
+        result: any[];
+    }>;
+    create: (request: Request, document: any) => Promise<any>;
+    update: (request: Request, documentId: string, document: any) => Promise<any>;
+    updatePartial: (request: Request, documentId: string, partial: any) => Promise<any>;
+    delete: (request: Request, documentId: string) => Promise<any>;
     deleteAll: (request: Request) => Promise<any>;
 }
 export default BaseService;

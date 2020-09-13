@@ -22,54 +22,54 @@ class BaseService implements Service,PubSub.Subscriber{
         return error;
     }
 
-    get = async(request:Request, entityId, attributes={}) => {
-        if(!entityId){
-            throw this.buildError(400,"entityId is required.");
+    get = async(request:Request, documentId:string, attributes={}) => {
+        if(!documentId){
+            throw this.buildError(400,"documentId is required.");
         }
         if(attributes){
             attributes['password']=0;
         }
-        const currentEntity = await this.repository.get(entityId,attributes);
+        const currentdocument = await this.repository.get(documentId,attributes);
 
-        if(!currentEntity) {
-            throw this.buildError(404,"Requested entity not found.");
+        if(!currentdocument) {
+            throw this.buildError(404,"Requested document not found.");
         }
-        return currentEntity;
+        return currentdocument;
     }
 
-    getAll = async(request:Request, query = {}, pageSize = 5, pageNum = 1,attributes={}) => {
+    getAll = async(request:Request, query = {}, sort = {}, pageSize:number = 5, pageNum:number = 1, attributes={}) => {
         if(attributes){
             attributes['password']=0;
         }
-        return await this.repository.getAll(query, pageSize, pageNum,attributes);
+        return await this.repository.getAll(query, sort, pageSize, pageNum,attributes);
     }
 
-    create = async(request:Request, entity) => {
-        return await this.repository.create(entity);
+    create = async(request:Request, document:any) => {
+        return await this.repository.create(document);
     }
 
-    update = async(request:Request, entityId, entity) => {
-        if(!entityId){
-            throw this.buildError(400,"entityId is required.");
+    update = async(request:Request, documentId:string, document:any) => {
+        if(!documentId){
+            throw this.buildError(400,"documentId is required.");
         }
 
-        return await this.repository.update(entityId, entity);
+        return await this.repository.update(documentId, document);
     }
 
-    updatePartial = async(request:Request, entityId, partial) => {
-        if(!entityId){
-            throw this.buildError(400,"entityId is required.");
+    updatePartial = async(request:Request, documentId:string, partial:any) => {
+        if(!documentId){
+            throw this.buildError(400,"documentId is required.");
         }
 
-        return await this.repository.updatePartial(entityId, partial);
+        return await this.repository.updatePartial(documentId, partial);
     }
 
-    delete = async(request:Request, entityId) => {
-        if(!entityId){
-            throw this.buildError(400,"entityId is required.");
+    delete = async(request:Request, documentId:string) => {
+        if(!documentId){
+            throw this.buildError(400,"documentId is required.");
         }
 
-        return await this.repository.delete(entityId);
+        return await this.repository.delete(documentId);
     }
 
     deleteAll = async(request:Request) => {

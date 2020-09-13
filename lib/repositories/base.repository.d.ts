@@ -3,10 +3,10 @@ import Respository from './repository';
 declare class BaseRepository implements Respository {
     model: mongoose.Model<any, {}>;
     constructor(model?: mongoose.Model<any, {}>);
-    get: (id: any, attributes?: {
+    get: (documentId: string, attributes?: {
         password: number;
     }) => Promise<any>;
-    getAll: (query?: {}, pageSize?: number, pageNum?: number, attributes?: any) => Promise<{
+    getAll: (query?: {}, sort?: {}, pageSize?: number, pageNum?: number, attributes?: any) => Promise<{
         query: {};
         pageSize: number;
         pageNum: number;
@@ -14,10 +14,10 @@ declare class BaseRepository implements Respository {
         resultTotalSize: number;
         result: any[];
     }>;
-    create: (entity: any) => Promise<any>;
-    update: (id: any, entity: any) => Promise<any>;
-    updatePartial: (id: any, partial: any) => Promise<any>;
-    delete: (id: any) => Promise<any>;
+    create: (document: any) => Promise<any>;
+    update: (documentId: string, document: any) => Promise<any>;
+    updatePartial: (documentId: string, partial: any) => Promise<any>;
+    delete: (documentId: string) => Promise<any>;
     deleteAll: () => Promise<{
         ok?: number;
         n?: number;
