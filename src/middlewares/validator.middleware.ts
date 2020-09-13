@@ -230,6 +230,7 @@ function validateProperty(i:ValidationSchema){
       break;
     case 'string':
         result = stringValidate(i);
+        break;
     default:
         result = i.data;
   }
