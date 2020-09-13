@@ -2,7 +2,6 @@
   "name": "node-library",
   "version": "1.0.1",
   "description": "Node Library",
-
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
@@ -21,6 +20,7 @@
     "@types/node": "^14.6.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-validator": "^6.6.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.3",
     "simple-encryptor": "^4.0.0",

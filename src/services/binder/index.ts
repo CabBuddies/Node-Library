@@ -1,4 +1,7 @@
 class Main{
+
+    //HashMap<String,Runnable> 
+
     bound : {[key:string]:Function} = {};
 
     bindFunction = (name:string,func:Function) => {
