@@ -26,8 +26,10 @@ class BaseService implements Service,PubSub.Subscriber{
         if(!documentId){
             throw this.buildError(400,"documentId is required.");
         }
-        if(attributes){
-            attributes['password']=0;
+        attributes = attributes || {};
+        if('password' in attributes){
+            if(attributes['password']!==0)
+                delete attributes['password']
         }
         const currentdocument = await this.repository.get(documentId,attributes);
 
@@ -38,8 +40,10 @@ class BaseService implements Service,PubSub.Subscriber{
     }
 
     getAll = async(request:Request, query = {}, sort = {}, pageSize:number = 5, pageNum:number = 1, attributes={}) => {
-        if(attributes){
-            attributes['password']=0;
+        attributes = attributes || {};
+        if('password' in attributes){
+            if(attributes['password']!==0)
+                delete attributes['password']
         }
         return await this.repository.getAll(query, sort, pageSize, pageNum,attributes);
     }

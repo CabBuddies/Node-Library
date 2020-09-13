@@ -21,15 +21,7 @@ class BaseRepository implements Respository{
         const resultTotalSize = await this.model.count(query);
         let result = [];
         if(resultTotalSize > 0){
-
-            const select = [{"password":0},{}];
-
-            for(const k in attributes){
-                const i = attributes[k] === 0 ? 0 : 1
-                select[i][k] = i;
-            }
-
-            result = await this.model.find(query).sort(sort).skip(skips).limit(pageSize).select(select[0]).select(select[1]);
+            result = await this.model.find(query).sort(sort).skip(skips).limit(pageSize).select(attributes);
         }
         const resultSize = result.length
         console.log(result)
