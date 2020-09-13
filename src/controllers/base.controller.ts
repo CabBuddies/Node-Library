@@ -56,7 +56,7 @@ class BaseController implements Controler{
             const query = req.body.query
             const sort = req.body.sort
 
-            const attributes = undefined
+            const attributes = req.body.attributes
 
             const result = await this.service.getAll(request, query, sort, pageSize, pageNum, attributes);
             return res.send(result);
