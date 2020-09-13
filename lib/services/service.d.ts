@@ -5,6 +5,8 @@ export default interface Service {
     get(request: Request, documentId: string, attributes?: any): Promise<any>;
     getAll(request: Request, query: any, sort: any, pageSize: number, pageNum: number, attributes: any): Promise<{
         query: any;
+        sort: any;
+        attributes: any;
         pageSize: number;
         pageNum: number;
         resultSize: number;

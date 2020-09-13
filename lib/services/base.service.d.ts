@@ -10,6 +10,8 @@ declare class BaseService implements Service, PubSub.Subscriber {
     get: (request: Request, documentId: string, attributes?: {}) => Promise<any>;
     getAll: (request: Request, query?: {}, sort?: {}, pageSize?: number, pageNum?: number, attributes?: {}) => Promise<{
         query: any;
+        sort: any;
+        attributes: any;
         pageSize: number;
         pageNum: number;
         resultSize: number;

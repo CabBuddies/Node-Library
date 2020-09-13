@@ -8,6 +8,8 @@ declare class BaseRepository implements Respository {
     }) => Promise<any>;
     getAll: (query?: {}, sort?: {}, pageSize?: number, pageNum?: number, attributes?: any) => Promise<{
         query: {};
+        sort: {};
+        attributes: any;
         pageSize: number;
         pageNum: number;
         resultSize: number;

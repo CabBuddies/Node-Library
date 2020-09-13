@@ -4,6 +4,8 @@ export default interface Repository {
     get(documentId: string, attributes?: any): Promise<any>;
     getAll(query?: any, sort?: any, pageSize?: number, pageNum?: number, attributes?: any): Promise<{
         query: any;
+        sort: any;
+        attributes: any;
         pageSize: number;
         pageNum: number;
         resultSize: number;

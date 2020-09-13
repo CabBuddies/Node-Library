@@ -27,6 +27,8 @@ class BaseRepository implements Respository{
         console.log(result)
         return {
             query,
+            sort,
+            attributes,
             pageSize,
             pageNum,
             resultSize,
