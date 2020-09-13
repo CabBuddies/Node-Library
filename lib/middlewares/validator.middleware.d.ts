@@ -5,7 +5,7 @@ interface ValidationTypeSchema {
     type: string;
 }
 interface ValidationSchema extends ValidationTypeSchema {
-    array_defaultValue?: [any];
+    array_defaultValue?: any[];
     array_item_type?: any;
     array_min?: number;
     array_max?: number;
@@ -21,8 +21,8 @@ interface ValidationSchema extends ValidationTypeSchema {
     lower?: boolean;
     upper?: boolean;
     equal?: any;
-    anyOf?: [any];
+    anyOf?: any[];
     optional?: boolean;
 }
-export default function validateRequestBody(schemas: [ValidationSchema]): (req: express.Request, res: express.Response, next: express.NextFunction) => express.Response<any>;
+export default function validateRequestBody(schemas: ValidationSchema[]): (req: express.Request, res: express.Response, next: express.NextFunction) => express.Response<any>;
 export {};

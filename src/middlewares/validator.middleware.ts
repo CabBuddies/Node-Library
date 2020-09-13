@@ -7,7 +7,7 @@ interface ValidationTypeSchema{
 }
 
 interface ValidationSchema extends ValidationTypeSchema{
-    array_defaultValue?:[any],
+    array_defaultValue?:any[],
     array_item_type?:any,
     array_min?:number,
     array_max?:number,
@@ -23,7 +23,7 @@ interface ValidationSchema extends ValidationTypeSchema{
     lower?:boolean,
     upper?:boolean,
     equal?:any,
-    anyOf?:[any],
+    anyOf?:any[],
     optional?:boolean
 }
 
@@ -235,7 +235,7 @@ function validateProperty(i:ValidationSchema){
   return result;
 }
 
-function getValueFromJsonPath(input,path){
+function getValueFromJsonPath(input,path:string){
   let temp = input;
   for(const p of path.split('.')){
     if(p in temp === false){
@@ -247,7 +247,7 @@ function getValueFromJsonPath(input,path){
   return temp;
 }
 
-function setValueByJsonPath(output,path,value){
+function setValueByJsonPath(output,path:string,value){
   let temp = output;
   const pathParts = path.split('.');
   const ppp = pathParts.pop();
@@ -260,7 +260,7 @@ function setValueByJsonPath(output,path,value){
   temp[ppp] = value;
 }
 
-function checkSchema(reqBody,schemas:[ValidationSchema]){
+function checkSchema(reqBody,schemas:ValidationSchema[]){
   const result = {};
   for(const schema of schemas){
     let value = getValueFromJsonPath(reqBody,schema.name);
@@ -276,7 +276,7 @@ function checkSchema(reqBody,schemas:[ValidationSchema]){
   return result;
 }
 
-export default function validateRequestBody(schemas:[ValidationSchema]){
+export default function validateRequestBody(schemas:ValidationSchema[]){
     return ( req : express.Request , res : express.Response , next : express.NextFunction ) => {
         console.log('validateRequestBody',schemas);
         try {
