@@ -202,7 +202,7 @@ function arrayValidate(vs:ValidationSchema){
         return value !== undefined && value !== null;
     });
   }
-  
+
   for(let i in vs.data){
     const temp = JSON.parse(JSON.stringify(vs));
     temp.data = vs.data[i];
@@ -272,8 +272,14 @@ function checkSchema(reqBody,schemas:ValidationSchema[]){
       }
     }
     schema.data = value;
-    value = validateProperty(schema);
-    setValueByJsonPath(result,schema.name,value);
+    try {
+        value = validateProperty(schema);
+        setValueByJsonPath(result,schema.name,value);
+    } catch (error) {
+        if(schema.optional !== true){
+            throw error;
+        }
+    }
   }
   return result;
 }
