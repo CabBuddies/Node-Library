@@ -99,14 +99,14 @@ function checkMinMax(data,min,max,genericError){
 function numberValidator(vs:ValidationSchema){
     //console.log('numberValidator',{name,data,equal,min,max,anyOf})
     vs.name = vs.name||'{property}';
-    let genericError = "Invalid "+vs.name;
+    let genericError = "Invalid "+vs.name+"["+vs.data+"]";
 
     if(vs.defaultValue){
       vs.data = vs.data || vs.defaultValue;
     }
 
     if(isNaN(parseInt(vs.data)))
-      throwErrorMessage(genericError+"["+vs.data+"] expected number type")
+      throwErrorMessage(genericError+": expected number type")
 
     vs.data = parseInt(vs.data);
 
@@ -130,15 +130,13 @@ function numberValidator(vs:ValidationSchema){
 function stringValidate(vs:ValidationSchema){
     //console.log('stringValidate',{name,data,min,max,size,regex,trim,lower,upper,equal,anyOf})
     vs.name = vs.name||'{property}';
-    let genericError = "Invalid "+vs.name;
+    let genericError = "Invalid "+vs.name+"["+vs.data+"]: ";
 
     if(vs.defaultValue){
       vs.data = vs.data || vs.defaultValue;
     }
 
     vs.data = typeCheck(vs);
-
-    genericError += "["+vs.data+"]";
 
     if(vs.trim){
       vs.data = vs.data.trim();
@@ -198,17 +196,18 @@ function arrayValidate(vs:ValidationSchema){
 
   vs.array_item_type = vs.array_item_type || 'any';
 
-  for(let i in vs.data){
-    const temp = JSON.parse(JSON.stringify(vs));
-    temp.data = vs.data[i];
-    temp.type = vs.array_item_type;
-    vs.data[parseInt(i)] = validateProperty(temp);
-  }
 
   if(vs.array_normalize){
     vs.data = vs.data.filter((value, index, self) => { 
         return value !== undefined && value !== null;
     });
+  }
+  
+  for(let i in vs.data){
+    const temp = JSON.parse(JSON.stringify(vs));
+    temp.data = vs.data[i];
+    temp.type = vs.array_item_type;
+    vs.data[parseInt(i)] = validateProperty(temp);
   }
 
   if(vs.array_unique){
