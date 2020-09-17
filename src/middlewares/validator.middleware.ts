@@ -37,7 +37,7 @@ function throwErrorMessage(message='Invalid Request Body',status=400){
 function typeCheck(vts:ValidationTypeSchema){
   vts.name = vts.name||'{property}';
   let genericError = "Invalid "+vts.name+" ["+vts.data+"]";
-  if(!vts.data){
+  if(vts.data === undefined){
       throwErrorMessage(genericError+": missing")
   }
   if(vts.type === 'array'){
