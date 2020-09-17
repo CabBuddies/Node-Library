@@ -3,7 +3,7 @@ import Request from '../helpers/request.helper';
 export default interface Service {
     repository: Repository;
     get(request: Request, documentId: string, attributes?: any): Promise<any>;
-    getAll(request: Request, query: any, sort: any, pageSize: number, pageNum: number, attributes: any): Promise<{
+    getAll(request: Request, query: any, sort: any, pageSize: number, pageNum: number, attributes: string[]): Promise<{
         query: any;
         sort: any;
         attributes: any;

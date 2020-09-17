@@ -13,7 +13,7 @@ class BaseRepository implements Respository{
         return await this.model.findById(documentId).select(attributes);
     }
 
-    getAll = async(query = {}, sort = {}, pageSize : number = 5, pageNum : number = 1, attributes:any={'password':0}) => {
+    getAll = async(query = {}, sort = {}, pageSize : number = 5, pageNum : number = 1, attributes:string[]=[]) => {
         //skip - limit
         console.log('base.repository',query,sort,attributes,pageSize,pageNum);
         const skips = pageSize * (pageNum - 1)
@@ -21,7 +21,11 @@ class BaseRepository implements Respository{
         const resultTotalSize = await this.model.count(query);
         let result = [];
         if(resultTotalSize > 0){
-            result = await this.model.find(query).sort(sort).skip(skips).limit(pageSize).select(attributes);
+            const attr = {};
+            for (const a of attributes) {
+                attr[a] = 1;
+            }
+            result = await this.model.find(query).sort(sort).skip(skips).limit(pageSize).select(attr);
         }
         const resultSize = result.length
         console.log(result)

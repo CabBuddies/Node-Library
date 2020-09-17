@@ -8,7 +8,7 @@ declare class BaseService implements Service, PubSub.Subscriber {
     processMessage(message: PubSub.Message): any;
     buildError(errorCode?: number, errorMessage?: string): {};
     get: (request: Request, documentId: string, attributes?: {}) => Promise<any>;
-    getAll: (request: Request, query?: {}, sort?: {}, pageSize?: number, pageNum?: number, attributes?: {}) => Promise<{
+    getAll: (request: Request, query?: {}, sort?: {}, pageSize?: number, pageNum?: number, attributes?: string[]) => Promise<{
         query: any;
         sort: any;
         attributes: any;

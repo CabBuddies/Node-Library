@@ -39,12 +39,7 @@ class BaseService implements Service,PubSub.Subscriber{
         return currentdocument;
     }
 
-    getAll = async(request:Request, query = {}, sort = {}, pageSize:number = 5, pageNum:number = 1, attributes={}) => {
-        attributes = attributes || {};
-        if('password' in attributes){
-            if(attributes['password']!==0)
-                delete attributes['password']
-        }
+    getAll = async(request:Request, query = {}, sort = {}, pageSize:number = 5, pageNum:number = 1, attributes:string[]=[]) => {
         return await this.repository.getAll(query, sort, pageSize, pageNum,attributes);
     }
 
