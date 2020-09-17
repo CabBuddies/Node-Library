@@ -18,9 +18,9 @@ class BaseController implements Controler{
             const request : Request = res.locals.request;
             const body = req.body; 
 
-            const createddocument = await this.service.create(request, body);
+            const createdDocument = await this.service.create(request, body);
 
-            return res.send(createddocument);
+            return res.send(createdDocument);
         } catch (error) {
             console.log(error);
             if(error.status && error.message){
@@ -33,8 +33,8 @@ class BaseController implements Controler{
     get : any = async(req : express.Request , res : express.Response) => {
         try {
             const request : Request = res.locals.request;
-            const documentId = req.params.id; 
-            const attributes = req.body.attributes;
+            const documentId:string = req.params.id; 
+            const attributes:string[] = req.body.attributes;
             const document = await this.service.get(request, documentId, attributes);
             return res.send(document);
         } catch (error) {
@@ -56,9 +56,10 @@ class BaseController implements Controler{
             const query = req.body.query
             const sort = req.body.sort
 
-            const attributes = req.body.attributes
+            const attributes:string[] = req.body.attributes
 
             const result = await this.service.getAll(request, query, sort, pageSize, pageNum, attributes);
+
             return res.send(result);
         } catch (error) {
             console.log(error);
@@ -72,12 +73,12 @@ class BaseController implements Controler{
     update : any = async(req : express.Request , res : express.Response) => {
         try {
             const request : Request = res.locals.request;
-            const documentId = req.params.id; 
+            const documentId:string = req.params.id; 
             const body = req.body; 
 
-            const updateddocument = await this.service.update(request, documentId, body);
+            const updatedDocument = await this.service.update(request, documentId, body);
 
-            return res.send(updateddocument);
+            return res.send(updatedDocument);
         } catch (error) {
             console.log(error);
             if(error.status && error.message){
@@ -90,12 +91,12 @@ class BaseController implements Controler{
     updatePartial : any = async(req : express.Request , res : express.Response) => {
         try {
             const request : Request = res.locals.request;
-            const documentId = req.params.id; 
+            const documentId:string = req.params.id; 
             const body = req.body; 
 
-            const updateddocument = await this.service.updatePartial(request, documentId, body);
+            const updatedDocument = await this.service.updatePartial(request, documentId, body);
 
-            return res.send(updateddocument);
+            return res.send(updatedDocument);
         } catch (error) {
             console.log(error);
             if(error.status && error.message){
@@ -108,7 +109,7 @@ class BaseController implements Controler{
     delete : any = async(req : express.Request , res : express.Response) => {
         try {
             const request : Request = res.locals.request;
-            const documentId = req.params.id; 
+            const documentId:string = req.params.id; 
             const deleteddocument = await this.service.delete(request, documentId);
             return res.send(deleteddocument);
         } catch (error) {
@@ -123,8 +124,8 @@ class BaseController implements Controler{
     deleteAll : any = async(req : express.Request , res : express.Response) => {
         try {
             const request : Request = res.locals.request;
-            const deletedEntities = await this.service.deleteAll(request);
-            return res.send(deletedEntities);
+            const deletedDocuments = await this.service.deleteAll(request);
+            return res.send(deletedDocuments);
         } catch (error) {
             console.log(error);
             if(error.status && error.message){

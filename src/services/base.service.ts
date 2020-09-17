@@ -22,14 +22,9 @@ class BaseService implements Service,PubSub.Subscriber{
         return error;
     }
 
-    get = async(request:Request, documentId:string, attributes={}) => {
+    get = async(request:Request, documentId:string, attributes=[]) => {
         if(!documentId){
             throw this.buildError(400,"documentId is required.");
-        }
-        attributes = attributes || {};
-        if('password' in attributes){
-            if(attributes['password']!==0)
-                delete attributes['password']
         }
         const currentdocument = await this.repository.get(documentId,attributes);
 

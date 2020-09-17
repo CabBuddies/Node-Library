@@ -3,9 +3,7 @@ import Respository from './repository';
 declare class BaseRepository implements Respository {
     model: mongoose.Model<any, {}>;
     constructor(model?: mongoose.Model<any, {}>);
-    get: (documentId: string, attributes?: {
-        password: number;
-    }) => Promise<any>;
+    get: (documentId: string, attributes?: any[]) => Promise<any>;
     getAll: (query?: {}, sort?: {}, pageSize?: number, pageNum?: number, attributes?: string[]) => Promise<{
         query: {};
         sort: {};

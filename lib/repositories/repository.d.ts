@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 export default interface Repository {
     model: mongoose.Model<any, {}>;
-    get(documentId: string, attributes?: any): Promise<any>;
+    get(documentId: string, attributes?: string[]): Promise<any>;
     getAll(query?: any, sort?: any, pageSize?: number, pageNum?: number, attributes?: string[]): Promise<{
         query: any;
         sort: any;
