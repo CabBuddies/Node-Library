@@ -1,5 +1,35 @@
 import * as express from 'express';
+var Validator = require('jsonschema').Validator;
 
+export default class ValidatorMiddleware {
+  validator;
+  constructor(schemas=[]){
+    this.validator = new Validator();
+    for (const schema of schemas) {
+      Validator.addSchema(schema,schema["id"]);
+    }
+  }
+  addSchema(schema){
+    Validator.addSchema(schema,schema["id"]);
+  }
+  validateRequestBody(schema){
+    return ( req : express.Request , res : express.Response , next : express.NextFunction ) => {
+        console.log('validateRequestBody',schema);
+        let validationResult;
+        try {
+            validationResult = Validator.validate(req.body,schema);
+            if(validationResult.errors.length === 0)
+              next()
+            else
+              res.status(400).send(validationResult.errors)
+        } catch (error) {
+            return res.status(error.status||500).send(error.message||'Unknown Server Issue');
+        }
+    }
+  }
+}
+
+/*
 interface ValidationTypeSchema{
     name:string,
     data?:any,
@@ -295,6 +325,7 @@ function checkSchema(reqBody,schemas:ValidationSchema[]){
   return result;
 }
 
+
 export default function validateRequestBody(schemas:ValidationSchema[]){
     return ( req : express.Request , res : express.Response , next : express.NextFunction ) => {
         console.log('validateRequestBody',schemas);
@@ -306,3 +337,4 @@ export default function validateRequestBody(schemas:ValidationSchema[]){
         }
     }
 }
+*/

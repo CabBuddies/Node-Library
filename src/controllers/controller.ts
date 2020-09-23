@@ -3,10 +3,10 @@ import Service from '../services/service';
 
 export default interface Controller{
     service? : Service;
-    get? : express.Application,
-    getAll? : express.Application,
-    create? : express.Application,
-    update? : express.Application,
-    updatePartial? : express.Application,
-    delete? : express.Application
+    get?(req : express.Request , res : express.Response),
+    getAll?(req : express.Request , res : express.Response),
+    create?(req : express.Request , res : express.Response) ,
+    update?(req : express.Request , res : express.Response) ,
+    updatePartial?(req : express.Request , res : express.Response) ,
+    delete?(req : express.Request , res : express.Response) 
 }
