@@ -25,35 +25,6 @@ let data = {
 const schema = {
     "type": "object",
     "additionalProperties": false,
-    "definitions": {
-        "contentSchema": {
-          "id": "/contentSchema",
-          "type": "object",
-          "required":[
-            "title",
-            "body",
-            "tags"
-          ],  
-          "properties": {
-            "title": {
-              "type": "string"
-            },
-            "body": {
-              "type": "string"
-            },
-            "tags": {
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string"
-              }
-            },
-            "dummy":{
-                "type":"string"
-            }
-          }
-        }
-      },
     "properties": {
       "draft": {
         "$ref": "/contentSchema"

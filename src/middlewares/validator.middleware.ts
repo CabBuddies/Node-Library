@@ -10,14 +10,14 @@ export default class ValidatorMiddleware {
     }
   }
   addSchema(schema){
-    Validator.addSchema(schema,schema["id"]);
+    this.validator.addSchema(schema,schema["id"]);
   }
   validateRequestBody(schema){
     return ( req : express.Request , res : express.Response , next : express.NextFunction ) => {
         console.log('validateRequestBody',schema);
         let validationResult;
         try {
-            validationResult = Validator.validate(req.body,schema);
+            validationResult = this.validator.validate(req.body,schema);
             if(validationResult.errors.length === 0)
               next()
             else
