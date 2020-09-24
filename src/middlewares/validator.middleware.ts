@@ -6,7 +6,7 @@ export default class ValidatorMiddleware {
   constructor(schemas=[]){
     this.validator = new Validator();
     for (const schema of schemas) {
-      Validator.addSchema(schema,schema["id"]);
+      this.validator.addSchema(schema,schema["id"]);
     }
   }
   addSchema(schema){
