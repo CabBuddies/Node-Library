@@ -51,7 +51,7 @@ class Main{
     }
 
     publishMessage = (message:Message) => {
-        console.log('PubSub',message,this.subscription);
+        console.log('PubSub',message);
         var sub = this.subscription;
         new Promise<any>(function(resolve,reject){
             try {
