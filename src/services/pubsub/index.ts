@@ -55,11 +55,13 @@ class Main{
         var sub = this.subscription;
         new Promise<any>(function(resolve,reject){
             try {
-                for(const subscriber of sub[message.type]){
-                    try {
-                        subscriber.processMessage(message);
-                    } catch (error) {
-                        console.log(error)
+                if(sub[message.type]){
+                    for(const subscriber of sub[message.type]){
+                        try {
+                            subscriber.processMessage(message);
+                        } catch (error) {
+                            console.log(error)
+                        }
                     }
                 }
             } catch (error) {
