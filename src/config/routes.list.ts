@@ -34,12 +34,16 @@ function getRoutesOfLayer(path, layer) {
         : '<complex:' + thing.toString() + '>';
     }
 }
+
+const listEndpoints = require('express-list-endpoints');
+
 const routesList = (app: express.Application) => {
-    app._router.stack.forEach(function(layer) {
-        const temp = getRoutesOfLayer('', layer)
-        for(const t of temp)
-            console.log(t)
-    });
+    console.log(listEndpoints(app));
+    // app._router.stack.forEach(function(layer) {
+    //     const temp = getRoutesOfLayer('', layer)
+    //     for(const t of temp)
+    //         console.log(t)
+    // });
 }
 
 export default routesList;
