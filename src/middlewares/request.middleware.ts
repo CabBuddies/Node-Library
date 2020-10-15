@@ -36,8 +36,14 @@ function requestProcessor (service : Service = null){
         try {
             const request : Request = new Request();
             console.log('middleware','requestProcessor',request);
-    
+
             request.setIP(extractIP(req));
+            request.setRaw({
+                body:req.body,
+                query:req.query
+                params:req.params,
+                header:JSON.parse(JSON.stringify(req.header))
+            });
             const token = extractToken(req);
             request.setToken(token);
 

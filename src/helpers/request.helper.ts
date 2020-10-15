@@ -4,7 +4,7 @@ interface IRequest{
         isAuthenticated : boolean,
         email : string,
         id : string
-    }
+    },
     header : {
         ip : string,
         token:{
@@ -14,7 +14,13 @@ interface IRequest{
             isExpired:boolean,
             secondsToExpiry:number
         }
-    }
+    },
+    raw : {
+        body : object,
+        query : object,
+        params : object,
+        header : object
+    },
     hasToken : boolean
 }
 
@@ -22,6 +28,12 @@ export default class Request implements IRequest {
     id: string;
     user: { email: string; id: string; isAuthenticated: boolean};
     header: { ip: string; token: {type:string, value:string, expiryTime:number, isExpired:boolean, secondsToExpiry:number} };
+    raw: {
+        body : object,
+        query : object,
+        params : object,
+        header : object
+    };
     hasToken: boolean;
     
     constructor(){
@@ -41,6 +53,12 @@ export default class Request implements IRequest {
                 secondsToExpiry: 0
             }
         }
+        this.raw = {
+            body : {},
+            query : {},
+            params : {},
+            header : {}
+        };
         this.hasToken = false;
     }
 
@@ -118,6 +136,20 @@ export default class Request implements IRequest {
     }
     isUserAuthenticated(){
         return this.user.isAuthenticated
+    }
+
+    setRaw(raw:{
+        body : object,
+        query : object,
+        params : object,
+        header : object
+    }){
+        this.raw = raw;
+        return this.raw;
+    }
+
+    getRaw(){
+        return this.raw;
     }
 
 }
