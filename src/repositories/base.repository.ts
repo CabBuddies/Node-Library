@@ -18,6 +18,11 @@ class BaseRepository implements Respository{
         return await this.model.findById(documentId).select(attributes);
     }
 
+    getOne = async(query:object ,attributes = []) => {
+        console.log('base.repository ',query)
+        return await this.model.findOne(query).select(attributes);
+    }
+
     getAll = async(query = {}, sort = {}, pageSize : number = 5, pageNum : number = 1, attributes:string[]=[]) => {
         //skip - limit
         console.log('base.repository',query,sort,attributes,pageSize,pageNum);

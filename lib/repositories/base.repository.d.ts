@@ -5,6 +5,7 @@ declare class BaseRepository implements Respository {
     constructor(model?: mongoose.Model<any, {}>);
     documentExists: (documentId: string) => Promise<boolean>;
     get: (documentId: string, attributes?: any[]) => Promise<any>;
+    getOne: (query: object, attributes?: any[]) => Promise<any>;
     getAll: (query?: {}, sort?: {}, pageSize?: number, pageNum?: number, attributes?: string[]) => Promise<{
         query: {};
         sort: {};

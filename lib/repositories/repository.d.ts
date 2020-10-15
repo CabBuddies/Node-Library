@@ -3,6 +3,7 @@ export default interface Repository {
     model: mongoose.Model<any, {}>;
     documentExists(documentId: string): Promise<boolean>;
     get(documentId: string, attributes?: string[]): Promise<any>;
+    getOne(query: object, attributes?: string[]): Promise<any>;
     getAll(query?: any, sort?: any, pageSize?: number, pageNum?: number, attributes?: string[]): Promise<{
         query: any;
         sort: any;
