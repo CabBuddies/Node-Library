@@ -38,7 +38,11 @@ function getRoutesOfLayer(path, layer) {
 const listEndpoints = require('express-list-endpoints');
 
 const routesList = (app: express.Application) => {
-    console.log(listEndpoints(app));
+    listEndpoints(app).forEach((route)=>{
+        route.methods.forEach((method)=>{
+            console.log(method,route.path);
+        })
+    })
     // app._router.stack.forEach(function(layer) {
     //     const temp = getRoutesOfLayer('', layer)
     //     for(const t of temp)
