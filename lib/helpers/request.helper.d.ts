@@ -19,7 +19,6 @@ interface IRequest {
         body: object;
         query: object;
         params: object;
-        header: object;
     };
     hasToken: boolean;
 }
@@ -44,7 +43,6 @@ export default class Request implements IRequest {
         body: object;
         query: object;
         params: object;
-        header: object;
     };
     hasToken: boolean;
     constructor();
@@ -81,18 +79,15 @@ export default class Request implements IRequest {
         body: object;
         query: object;
         params: object;
-        header: object;
     }): {
         body: object;
         query: object;
         params: object;
-        header: object;
     };
     getRaw(): {
         body: object;
         query: object;
         params: object;
-        header: object;
     };
 }
 export {};

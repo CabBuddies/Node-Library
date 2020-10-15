@@ -18,8 +18,7 @@ interface IRequest{
     raw : {
         body : object,
         query : object,
-        params : object,
-        header : object
+        params : object
     },
     hasToken : boolean
 }
@@ -31,8 +30,7 @@ export default class Request implements IRequest {
     raw: {
         body : object,
         query : object,
-        params : object,
-        header : object
+        params : object
     };
     hasToken: boolean;
     
@@ -56,8 +54,7 @@ export default class Request implements IRequest {
         this.raw = {
             body : {},
             query : {},
-            params : {},
-            header : {}
+            params : {}
         };
         this.hasToken = false;
     }
@@ -141,8 +138,7 @@ export default class Request implements IRequest {
     setRaw(raw:{
         body : object,
         query : object,
-        params : object,
-        header : object
+        params : object
     }){
         this.raw = raw;
         return this.raw;

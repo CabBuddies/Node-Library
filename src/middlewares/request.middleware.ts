@@ -41,8 +41,7 @@ function requestProcessor (service : Service = null){
             request.setRaw({
                 body:JSON.parse(JSON.stringify(req.body)),
                 query:JSON.parse(JSON.stringify(req.query)),
-                params:JSON.parse(JSON.stringify(req.params)),
-                header:JSON.parse(JSON.stringify(req.header))
+                params:JSON.parse(JSON.stringify(req.params))
             });
             const token = extractToken(req);
             request.setToken(token);
