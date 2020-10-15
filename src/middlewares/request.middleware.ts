@@ -39,9 +39,9 @@ function requestProcessor (service : Service = null){
 
             request.setIP(extractIP(req));
             request.setRaw({
-                body:req.body,
-                query:req.query
-                params:req.params,
+                body:JSON.parse(JSON.stringify(req.body)),
+                query:JSON.parse(JSON.stringify(req.query)),
+                params:JSON.parse(JSON.stringify(req.params)),
                 header:JSON.parse(JSON.stringify(req.header))
             });
             const token = extractToken(req);

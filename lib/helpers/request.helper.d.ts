@@ -15,6 +15,12 @@ interface IRequest {
             secondsToExpiry: number;
         };
     };
+    raw: {
+        body: object;
+        query: object;
+        params: object;
+        header: object;
+    };
     hasToken: boolean;
 }
 export default class Request implements IRequest {
@@ -33,6 +39,12 @@ export default class Request implements IRequest {
             isExpired: boolean;
             secondsToExpiry: number;
         };
+    };
+    raw: {
+        body: object;
+        query: object;
+        params: object;
+        header: object;
     };
     hasToken: boolean;
     constructor();
@@ -65,5 +77,22 @@ export default class Request implements IRequest {
     getTokenType(): string;
     isTokenExpired(): boolean;
     isUserAuthenticated(): boolean;
+    setRaw(raw: {
+        body: object;
+        query: object;
+        params: object;
+        header: object;
+    }): {
+        body: object;
+        query: object;
+        params: object;
+        header: object;
+    };
+    getRaw(): {
+        body: object;
+        query: object;
+        params: object;
+        header: object;
+    };
 }
 export {};
