@@ -86,4 +86,13 @@ function requestProcessor (service : Service = null){
     }
 }
 
-export {requestProcessor};
+function addParamToRequest(){
+    return (req:express.Request, res:express.Response, next:express.NextFunction, value:any, name:string)=>{
+        const request : Request = res.locals.request;
+        //console.log('\n\n\nrouter.param\n\n\n',name,value,'\n\n\n');
+        request.raw.params[name]=value;
+        next();
+    }
+}
+
+export {requestProcessor,addParamToRequest};
