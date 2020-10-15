@@ -17,6 +17,8 @@ export default interface Repository {
     create(document: any): Promise<any>;
     update(documentId: string, document: any): Promise<any>;
     updatePartial(documentId: string, document: any): Promise<any>;
+    updateOnePartial(query: object, document: any): Promise<any>;
     delete(documentId: string): Promise<any>;
+    deleteOne(query: object): Promise<any>;
     [propName: string]: any;
 }
