@@ -2,6 +2,7 @@ import * as mongoose from 'mongoose';
 
 export default interface Repository{
     model : mongoose.Model<any,{}>;
+    documentExists(documentId:string) : Promise<boolean>,
     get(documentId:string ,attributes?:string[] ) : Promise<any>,
     getAll(query?:any, sort?:any, pageSize?:number, pageNum?:number, attributes?:string[]) : Promise<{ query: any; sort: any; attributes: any; pageSize: number; pageNum: number; resultSize: number; resultTotalSize: number; result: any[]; }>,
     create(document:any) : Promise<any>,

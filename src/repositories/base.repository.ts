@@ -8,6 +8,11 @@ class BaseRepository implements Respository{
         this.model = model;
     }
 
+    documentExists = async(documentId:string) => {
+        console.log('base.repository ',documentId)
+        return await this.model.exists({_id:documentId});
+    } 
+
     get = async(documentId:string ,attributes = []) => {
         console.log('base.repository ',documentId)
         return await this.model.findById(documentId).select(attributes);

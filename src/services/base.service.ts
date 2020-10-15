@@ -22,6 +22,13 @@ class BaseService implements Service,PubSub.Subscriber{
         return error;
     }
 
+    documentExists = async(request:Request, documentId:string) => {
+        if(!documentId){
+            throw this.buildError(400,"documentId is required.");
+        }
+        return await this.repository.documentExists(documentId);
+    }
+
     get = async(request:Request, documentId:string, attributes=[]) => {
         if(!documentId){
             throw this.buildError(400,"documentId is required.");
