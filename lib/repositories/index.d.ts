@@ -1,3 +1,4 @@
 import Repository from './repository';
 import BaseRepository from './base.repository';
-export { Repository, BaseRepository };
+import AuthorRepository from './author.repository';
+export { Repository, BaseRepository, AuthorRepository };
