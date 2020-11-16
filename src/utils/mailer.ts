@@ -14,9 +14,16 @@ var transporter = nodemailer.createTransport(smtpTransport({
 
 console.log(transporter);
 
-function sendMail(to:string,subject:string,text:string){
+function sendMail(data:{from:string,to:string,subject:string,text:string}){
+    const {
+        from,
+        to, 
+        subject,
+        text
+    } = data;
     return new Promise((resolve,reject)=>{
         transporter.sendMail({
+            from,
             to, 
             subject,
             text
