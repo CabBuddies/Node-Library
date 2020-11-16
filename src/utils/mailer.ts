@@ -37,10 +37,4 @@ function sendMail(data:{from:string,to:string,subject:string,text:string}){
     });
 }
 
-// sendMail('konda.nihal5@gmail.com','Test Subject','Test Body').then((response)=>{
-//     console.log('response',response);
-// }).catch((error)=>{
-//     console.log('error',error);
-// });
-
 export default sendMail;

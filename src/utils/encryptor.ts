@@ -18,7 +18,7 @@ function decrypt(text:string,key:string='6HE4Z385an9b5Jja'){
       }).decrypt(text);
 }
 
-export default {
+export {
     encrypt,
     decrypt
 }
