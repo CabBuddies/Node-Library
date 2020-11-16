@@ -5,6 +5,7 @@ import * as Middlewares from './middlewares';
 import * as Repositories from './repositories';
 import * as Schemas from './schemas';
 import * as Services from './services';
+import * as Utils from './utils';
 import * as Test from './test/helper';
 
 console.log('node-library');
@@ -17,5 +18,6 @@ export {
     Repositories,
     Schemas,
     Services,
+    Utils,
     Test
 }

@@ -27,6 +27,8 @@
     "jsonschema": "^1.2.6",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.3",
+    "nodemailer": "^6.4.16",
+    "nodemailer-smtp-transport": "^2.7.4",
     "simple-encryptor": "^4.0.0",
     "ts-node": "^9.0.0"
   },
