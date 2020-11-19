@@ -1,7 +1,7 @@
 import * as express from 'express';
 import Request from '../helpers/request.helper';
 
-export default function authCheck(required: boolean = true,isRefresh: boolean = false){
+export default function authCheck(required: boolean = true,hasToBeConfirmed: boolean = false,isRefresh: boolean = false){
     console.log('AMJ',required,isRefresh)
     return function ( req : express.Request , res : express.Response , next : express.NextFunction ) {
         try {
@@ -19,6 +19,8 @@ export default function authCheck(required: boolean = true,isRefresh: boolean = 
                     (request.isUserAuthenticated() == false)
                     ||
                     (isRefresh !== (request.getToken().type === 'refresh'))
+                    ||
+                    (hasToBeConfirmed === true && request.isUserConfirmed() === false)
                 ){
                     console.log('AMJ',403)
                     return res.sendStatus(403);

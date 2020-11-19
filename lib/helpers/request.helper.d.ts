@@ -1,6 +1,7 @@
 interface IRequest {
     id: string;
     user: {
+        isConfirmed: boolean;
         isAuthenticated: boolean;
         email: string;
         id: string;
@@ -28,6 +29,7 @@ export default class Request implements IRequest {
         email: string;
         id: string;
         isAuthenticated: boolean;
+        isConfirmed: boolean;
     };
     header: {
         ip: string;
@@ -75,6 +77,8 @@ export default class Request implements IRequest {
     getTokenType(): string;
     isTokenExpired(): boolean;
     isUserAuthenticated(): boolean;
+    isUserConfirmed(): boolean;
+    setConfirmed(isConfirmed: boolean): boolean;
     setRaw(raw: {
         body: object;
         query: object;

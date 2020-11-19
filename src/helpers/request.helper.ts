@@ -1,6 +1,7 @@
 interface IRequest{
     id: string,
     user : {
+        isConfirmed : boolean,
         isAuthenticated : boolean,
         email : string,
         id : string
@@ -25,7 +26,7 @@ interface IRequest{
 
 export default class Request implements IRequest {
     id: string;
-    user: { email: string; id: string; isAuthenticated: boolean};
+    user: { email: string; id: string; isAuthenticated: boolean; isConfirmed: boolean};
     header: { ip: string; token: {type:string, value:string, expiryTime:number, isExpired:boolean, secondsToExpiry:number} };
     raw: {
         body : object,
@@ -38,6 +39,7 @@ export default class Request implements IRequest {
         this.id = Date.now().toString();
         this.user = {
             isAuthenticated:false,
+            isConfirmed:false,
             id:'',
             email:'',
         }
@@ -133,6 +135,14 @@ export default class Request implements IRequest {
     }
     isUserAuthenticated(){
         return this.user.isAuthenticated
+    }
+    isUserConfirmed(){
+        return this.user.isConfirmed
+    }
+
+    setConfirmed(isConfirmed:boolean){
+        this.user.isConfirmed = isConfirmed;
+        return this.user.isConfirmed;
     }
 
     setRaw(raw:{
