@@ -70,6 +70,7 @@ function requestProcessor (service : Service = null){
                         request.setEmail(decoded.email);
                         token.expiryTime = decoded.expiryTime;
                         request.setToken(token);
+                        request.setConfirmed(decoded.isConfirmed);
                     }
     
                 }

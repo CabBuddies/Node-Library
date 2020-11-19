@@ -2,6 +2,7 @@ interface Auth {
     id: string;
     email: string;
     expiryTime: number;
+    isConfirmed: boolean;
     [propName: string]: any;
 }
 declare const TIME: {
