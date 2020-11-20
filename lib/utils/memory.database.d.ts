@@ -3,6 +3,7 @@ declare class Collection {
     constructor();
     putItem(key: string, value: any): any;
     getItem(key: string): any;
+    deleteItem(key: string): void;
     hasItem(key: string): boolean;
 }
 declare class Database {

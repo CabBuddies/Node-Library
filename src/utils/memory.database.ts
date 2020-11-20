@@ -14,6 +14,10 @@ class Collection{
         return this.data[key];
     }
 
+    deleteItem(key:string){
+        delete this.data[key];
+    }
+
     hasItem(key:string){
         return key in this.data;
     }

@@ -7,7 +7,7 @@ function generateRandomString(data:{length?:number,capitalAlpha?:boolean,lowerAl
     const charactersLength = characters.length;
     if(charactersLength === 0)
         return '';
-    for ( var i = 0; i < length; i++ ) {
+    for ( var i = 0; i < data.length; i++ ) {
        result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
