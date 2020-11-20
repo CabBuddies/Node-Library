@@ -40,7 +40,7 @@ const listEndpoints = require('express-list-endpoints');
 const routesList = (app: express.Application) => {
     listEndpoints(app).forEach((route)=>{
         route.methods.forEach((method)=>{
-            console.log(method,route.path);
+            console.log(`${method}\t\t${route.path}`);
         })
     })
     // app._router.stack.forEach(function(layer) {
