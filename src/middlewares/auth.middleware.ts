@@ -1,8 +1,8 @@
 import * as express from 'express';
 import Request from '../helpers/request.helper';
 
-export default function authCheck(required: boolean = true,hasToBeConfirmed: boolean = false,isRefresh: boolean = false){
-    console.log('AMJ',required,isRefresh)
+export default function authCheck(required: boolean = true,hasToBeConfirmed: boolean = false,hasToBeRefresh: boolean = false){
+    console.log('AMJ',required,hasToBeRefresh)
     return function ( req : express.Request , res : express.Response , next : express.NextFunction ) {
         try {
             const request :Request = res.locals.request;
@@ -21,7 +21,8 @@ export default function authCheck(required: boolean = true,hasToBeConfirmed: boo
                     console.log('AMJ',403)
                     return res.status(403).send('User is not authenticated');
                 }
-                if(isRefresh !== (request.getToken().type === 'refresh')){
+                if(hasToBeRefresh)
+                if(request.getToken().type !== 'refresh'){
                     console.log('AMJ',403)
                     return res.status(403).send('Refresh token not provided');
                 }
