@@ -63,6 +63,7 @@ function requestProcessor (service : Service = null){
                         }
                     } catch (error) {
                         console.log('middleware','requestProcessor',error);
+                        activeTokenCount=0;
                     }
     
                     console.log('requestProcessor','activeTokenCount',activeTokenCount);
