@@ -22,7 +22,9 @@ function extractToken(req:express.Request){
 function extractIP(req:express.Request){
     try {
         const xForwardedFor = ((req.headers['x-forwarded-for']+'') || '').replace(/:\d+$/, '');
+        console.log('xForwardedFor',xForwardedFor,'req.connection.remoteAddress',req.connection.remoteAddress);
         const ip = xForwardedFor || req.connection.remoteAddress;
+        console.log('ip',ip);
         return req.ip||ip;
     } catch (error) {
         console.log(error.message)
