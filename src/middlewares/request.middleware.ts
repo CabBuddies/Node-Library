@@ -3,6 +3,7 @@ import Request from '../helpers/request.helper';
 import {Service} from '../services'
 import * as jwtHelper from '../helpers/jwt.helper';
 const getIP = require('external-ip')();
+const geoip = require('geoip-lite');
 
 function extractToken(req:express.Request){
     try {
@@ -62,6 +63,20 @@ function requestProcessor (service : Service = null){
             });
             const token = extractToken(req);
             request.setToken(token);
+
+            try {
+                
+                const geo = geoip.lookup(request.getIP());
+
+                request.setLocation({
+                    latitude:geo.ll[0],
+                    longitude:geo.ll[1],
+                    raw:geo
+                })
+                
+            } catch (error) {
+                
+            }
 
             console.log('middleware','requestProcessor',request);
         

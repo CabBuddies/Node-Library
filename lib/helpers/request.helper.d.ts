@@ -21,6 +21,11 @@ interface IRequest {
         query: object;
         params: object;
     };
+    location: {
+        latitude: number;
+        longitude: number;
+        raw: object;
+    };
     hasToken: boolean;
 }
 export default class Request implements IRequest {
@@ -45,6 +50,11 @@ export default class Request implements IRequest {
         body: object;
         query: object;
         params: object;
+    };
+    location: {
+        latitude: number;
+        longitude: number;
+        raw: object;
     };
     hasToken: boolean;
     constructor();
@@ -79,6 +89,16 @@ export default class Request implements IRequest {
     isUserAuthenticated(): boolean;
     isUserConfirmed(): boolean;
     setConfirmed(isConfirmed: boolean): boolean;
+    setLocation(location: {
+        latitude: number;
+        longitude: number;
+        raw: object;
+    }): void;
+    getLocation(): {
+        latitude: number;
+        longitude: number;
+        raw: object;
+    };
     setRaw(raw: {
         body: object;
         query: object;

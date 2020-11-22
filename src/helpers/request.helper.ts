@@ -21,6 +21,11 @@ interface IRequest{
         query : object,
         params : object
     },
+    location:{
+        latitude : number,
+        longitude : number,
+        raw : object
+    },
     hasToken : boolean
 }
 
@@ -32,6 +37,11 @@ export default class Request implements IRequest {
         body : object,
         query : object,
         params : object
+    };
+    location : {
+        latitude : number,
+        longitude : number,
+        raw : object
     };
     hasToken: boolean;
     
@@ -52,7 +62,12 @@ export default class Request implements IRequest {
                 isExpired: true,
                 secondsToExpiry: 0
             }
-        }
+        };
+        this.location = {
+            latitude:0.0,
+            longitude:0.0,
+            raw:{}
+        };
         this.raw = {
             body : {},
             query : {},
@@ -143,6 +158,18 @@ export default class Request implements IRequest {
     setConfirmed(isConfirmed:boolean){
         this.user.isConfirmed = isConfirmed;
         return this.user.isConfirmed;
+    }
+
+    setLocation(location:{
+        latitude : number,
+        longitude : number,
+        raw : object
+    }){
+        this.location = location;
+    }
+
+    getLocation(){
+        return this.location;
     }
 
     setRaw(raw:{
