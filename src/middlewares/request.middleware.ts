@@ -67,7 +67,7 @@ function requestProcessor (service : Service = null){
     
                     console.log('requestProcessor','activeTokenCount',activeTokenCount);
 
-                    if(activeTokenCount > 1){
+                    if(activeTokenCount >= 1){
                         request.setUserId(decoded.id);
                         request.setEmail(decoded.email);
                         token.expiryTime = decoded.expiryTime;
