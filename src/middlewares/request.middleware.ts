@@ -29,20 +29,20 @@ async function extractIP(req:express.Request){
         console.log('ip',ip);
         console.log('getIP',getIP);
         ip = await new Promise((resolve,reject)=>{
-            getIP((err, ip) => {
-                console.log('err',err,'ip',ip);
+            getIP((err, _ip) => {
+                console.log('err',err,'ip',_ip);
                 if (err) {
                     // every service in the list has failed
                     reject(err);
                     return;
                 }
-                resolve(ip);
+                resolve(_ip);
             });
         });
         console.log('ip','updated',ip);
         return req.ip||ip;
     } catch (error) {
-        console.log(error.message)
+        console.log(error)
     }
     return null
 }
