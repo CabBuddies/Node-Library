@@ -7,7 +7,7 @@
   "scripts": {
     "prepare": "npm run build",
     "build": "tsc --build",
-    "git":"git add . && git commit -am '$npm_config_msg' && git push -u origin master"
+    "git":"git add . && git commit -am 'Quick Commit' && git push -u origin master"
   },
   "files": [
     "lib"
