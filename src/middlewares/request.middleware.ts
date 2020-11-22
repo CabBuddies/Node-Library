@@ -66,7 +66,7 @@ function requestProcessor (service : Service = null){
                         activeTokenCount=0;
                     }
     
-                    console.log('requestProcessor','activeTokenCount',activeTokenCount);
+                    console.log('requestProcessor','activeTokenCount',activeTokenCount,decoded);
 
                     if(activeTokenCount >= 1){
                         request.setUserId(decoded.id);
