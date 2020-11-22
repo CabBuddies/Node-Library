@@ -2,6 +2,7 @@ import * as express from 'express';
 import Request from '../helpers/request.helper';
 import {Service} from '../services'
 import * as jwtHelper from '../helpers/jwt.helper';
+import getIP from 'external-ip';
 
 function extractToken(req:express.Request){
     try {
@@ -19,12 +20,24 @@ function extractToken(req:express.Request){
     return null
 }
 
-function extractIP(req:express.Request){
+async function extractIP(req:express.Request){
     try {
+        console.log(req.headers)
         const xForwardedFor = ((req.headers['x-forwarded-for']+'') || '').replace(/:\d+$/, '');
         console.log('xForwardedFor',xForwardedFor,'req.connection.remoteAddress',req.connection.remoteAddress);
-        const ip = xForwardedFor || req.connection.remoteAddress;
+        let ip = xForwardedFor || req.connection.remoteAddress;
         console.log('ip',ip);
+        ip = await new Promise((resolve,reject)=>{
+            getIP()((err, ip) => {
+                if (err) {
+                    // every service in the list has failed
+                    reject(err);
+                    return;
+                }
+                resolve(ip);
+            });
+        });
+        console.log('ip','updated',ip);
         return req.ip||ip;
     } catch (error) {
         console.log(error.message)
@@ -39,7 +52,7 @@ function requestProcessor (service : Service = null){
             const request : Request = new Request();
             console.log('middleware','requestProcessor',request);
 
-            request.setIP(extractIP(req));
+            request.setIP(await extractIP(req));
             request.setRaw({
                 body:JSON.parse(JSON.stringify(req.body)),
                 query:JSON.parse(JSON.stringify(req.query)),
