@@ -2,7 +2,7 @@ import * as express from 'express';
 import Request from '../helpers/request.helper';
 import {Service} from '../services'
 import * as jwtHelper from '../helpers/jwt.helper';
-import getIP from 'external-ip';
+const getIP = require('external-ip')();
 
 function extractToken(req:express.Request){
     try {
