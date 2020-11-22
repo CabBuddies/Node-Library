@@ -40,7 +40,7 @@ async function extractIP(req:express.Request){
             });
         });
         console.log('ip','updated',ip);
-        return req.ip||ip;
+        return ip;
     } catch (error) {
         console.log(error)
     }
