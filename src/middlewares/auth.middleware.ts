@@ -13,17 +13,21 @@ export default function authCheck(required: boolean = true,hasToBeConfirmed: boo
                     console.log('AMJ',401)
                     return res.sendStatus(401);
                 }
-                if(
-                    (request.isTokenExpired())
-                    ||
-                    (request.isUserAuthenticated() == false)
-                    ||
-                    (isRefresh !== (request.getToken().type === 'refresh'))
-                    ||
-                    (hasToBeConfirmed === true && request.isUserConfirmed() === false)
-                ){
+                if(request.isTokenExpired()){
                     console.log('AMJ',403)
-                    return res.sendStatus(403);
+                    return res.status(403).send('Token has expired');
+                }
+                if(request.isUserAuthenticated() == false){
+                    console.log('AMJ',403)
+                    return res.status(403).send('User is not authenticated');
+                }
+                if(isRefresh !== (request.getToken().type === 'refresh')){
+                    console.log('AMJ',403)
+                    return res.status(403).send('Refresh token not provided');
+                }
+                if(hasToBeConfirmed === true && request.isUserConfirmed() === false){
+                    console.log('AMJ',403)
+                    return res.status(403).send('User has not confirmed yet.');
                 }
             }
             console.log('AMJ','done')
