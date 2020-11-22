@@ -27,17 +27,18 @@ async function extractIP(req:express.Request){
         console.log('xForwardedFor',xForwardedFor,'req.connection.remoteAddress',req.connection.remoteAddress);
         let ip = xForwardedFor || req.connection.remoteAddress;
         console.log('ip',ip);
-        ip = await new Promise((resolve,reject)=>{
-            getIP()((err, ip) => {
-                if (err) {
-                    // every service in the list has failed
-                    reject(err);
-                    return;
-                }
-                resolve(ip);
-            });
-        });
-        console.log('ip','updated',ip);
+        console.log('getIP',getIP);
+        // ip = await new Promise((resolve,reject)=>{
+        //     getIP()((err, ip) => {
+        //         if (err) {
+        //             // every service in the list has failed
+        //             reject(err);
+        //             return;
+        //         }
+        //         resolve(ip);
+        //     });
+        // });
+        // console.log('ip','updated',ip);
         return req.ip||ip;
     } catch (error) {
         console.log(error.message)
