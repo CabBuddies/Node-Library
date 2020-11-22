@@ -6,7 +6,8 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "prepare": "npm run build",
-    "build": "tsc --build"
+    "build": "tsc --build",
+    "git":"git add . && git commit -am '$npm_config_msg' && git push -u origin master"
   },
   "files": [
     "lib"
