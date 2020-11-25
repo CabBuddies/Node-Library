@@ -13,7 +13,7 @@ function checkDocumentExists(service : BaseService,paramName:string='id') {
         } catch (error) {
             
         }
-        res.status(404).send(paramName+' not found');
+        res.status(404).json({errorCode:'NOT_FOUND',message:paramName+' not found'});
     }
 }
 

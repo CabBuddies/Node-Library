@@ -10,7 +10,7 @@ function isAuthor(service : AuthorService) {
         if(isAuthor){
             next();
         }else{
-            res.status(403).send('Only Author is allowed to perform this operation');
+            res.status(403).json({errorCode:'ONLY_AUTHOR_ACCESS',message:'Only Author is allowed to perform this operation'});
         }
     }
 }
