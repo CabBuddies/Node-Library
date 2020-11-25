@@ -15,6 +15,10 @@ export default function authCheck(required: boolean = true,hasToBeConfirmed: boo
                 }
                 if(request.isTokenExpired()){
                     console.log('AMJ',403)
+                    if(request.getTokenType() === 'refresh')
+                        return res.status(403).json({errorCode:'REFRESH_TOKEN_EXPIRED',message:'Refresh Token has expired'});
+                    if(request.getTokenType() === 'access')
+                        return res.status(403).json({errorCode:'ACCESS_TOKEN_EXPIRED',message:'Access Token has expired'});
                     return res.status(403).json({errorCode:'TOKEN_EXPIRED',message:'Token has expired'});
                 }
                 if(request.isUserAuthenticated() == false){
@@ -24,7 +28,7 @@ export default function authCheck(required: boolean = true,hasToBeConfirmed: boo
                 if(hasToBeRefresh)
                 if(request.getToken().type !== 'refresh'){
                     console.log('AMJ',403)
-                    return res.status(403).json({errorCode:'REFRESH_TOKEN_EXPIRED',message:'Refresh token not provided'});
+                    return res.status(403).json({errorCode:'REFRESH_TOKEN_REQUIRED',message:'Refresh token not provided'});
                 }
                 if(hasToBeConfirmed === true && request.isUserConfirmed() === false){
                     console.log('AMJ',403)
