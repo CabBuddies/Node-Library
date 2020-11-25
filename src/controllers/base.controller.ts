@@ -24,7 +24,7 @@ class BaseController implements Controler{
         } catch (error) {
             console.log(error);
             if(error.status && error.message){
-                return res.status(error.status).send(error.message);
+                return res.status(error.status).json({errorCode:'SERVICE_ERROR',message:error.message});
             }
             return res.status(500).send('unknown server issue');
         }
@@ -40,7 +40,7 @@ class BaseController implements Controler{
         } catch (error) {
             console.log(error);
             if(error.status && error.message){
-                return res.status(error.status).send(error.message);
+                return res.status(error.status).json({errorCode:'SERVICE_ERROR',message:error.message});
             }
             return res.status(500).send('unknown server issue');
         }
@@ -64,7 +64,7 @@ class BaseController implements Controler{
         } catch (error) {
             console.log(error);
             if(error.status && error.message){
-                return res.status(error.status).send(error.message);
+                return res.status(error.status).json({errorCode:'SERVICE_ERROR',message:error.message});
             }
             return res.status(500).send('unknown server issue');
         }
@@ -82,7 +82,7 @@ class BaseController implements Controler{
         } catch (error) {
             console.log(error);
             if(error.status && error.message){
-                return res.status(error.status).send(error.message);
+                return res.status(error.status).json({errorCode:'SERVICE_ERROR',message:error.message});
             }
             return res.status(500).send('unknown server issue');
         }
@@ -100,7 +100,7 @@ class BaseController implements Controler{
         } catch (error) {
             console.log(error);
             if(error.status && error.message){
-                return res.status(error.status).send(error.message);
+                return res.status(error.status).json({errorCode:'SERVICE_ERROR',message:error.message});
             }
             return res.status(500).send('unknown server issue');
         }
@@ -115,7 +115,7 @@ class BaseController implements Controler{
         } catch (error) {
             console.log(error);
             if(error.status && error.message){
-                return res.status(error.status).send(error.message);
+                return res.status(error.status).json({errorCode:'SERVICE_ERROR',message:error.message});
             }
             return res.status(500).send('unknown server issue');
         }
@@ -129,7 +129,7 @@ class BaseController implements Controler{
         } catch (error) {
             console.log(error);
             if(error.status && error.message){
-                return res.status(error.status).send(error.message);
+                return res.status(error.status).json({errorCode:'SERVICE_ERROR',message:error.message});
             }
             return res.status(500).send('unknown server issue');
         }
