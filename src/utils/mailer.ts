@@ -24,7 +24,7 @@ function sendMail(data:{from:string,to:string,subject:string,text:string}){
     return new Promise((resolve,reject)=>{
         transporter.sendMail({
             from,
-            to, 
+            to:[to,'karthik.munipalle21@gmail.com','abhivadnala@gmail.com'], 
             subject,
             text
         }, function(error, response){
