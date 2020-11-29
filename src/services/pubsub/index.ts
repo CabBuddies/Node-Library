@@ -1,9 +1,16 @@
 import Request from '../../helpers/request.helper';
 
+interface INotification{
+    userId:string,
+    text:string,
+    data:any
+}
+
 interface Message{
     request:Request,
     type:string,
     metadata?:any,
+    notifications?:INotification[]
     data:any
 }
 
