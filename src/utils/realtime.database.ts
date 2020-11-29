@@ -6,7 +6,7 @@ interface props{
     url?:string,
     path?:string,
     value?:any,
-    callback?:Function
+    callback?(snapshot:firebase.database.DataSnapshot):any
 }
 
 class RealtimeDatabase{
@@ -52,10 +52,10 @@ class RealtimeDatabase{
     }
 
     observePath = ({options,url,path,callback}:props) => {
-        callback = callback||(()=>{});
+        callback = callback||((snapshot:firebase.database.DataSnapshot)=>{});
         
         this.getPath({options,url,path}).on('child_added',(snapshot)=>{
-            callback(snapshot.val());
+            callback(snapshot);
         })
     }
 }
