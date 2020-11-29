@@ -2,7 +2,7 @@ import Request from '../../helpers/request.helper';
 
 interface INotification{
     userId:string,
-    text:string,
+    text?:string,
     data?:any
 }
 
