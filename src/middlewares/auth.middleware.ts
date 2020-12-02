@@ -11,7 +11,7 @@ export default function authCheck(required: boolean = true,hasToBeConfirmed: boo
                 console.log('AMJ',required)
                 if(request.hasToken == false){
                     console.log('AMJ',401)
-                    return res.sendStatus(401);
+                    return res.status(401).json({errorCode:'UNAUTHORIZED',message:'Refresh Token has expired'});
                 }
                 if(request.isTokenExpired()){
                     console.log('AMJ',403)
