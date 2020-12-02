@@ -26,12 +26,14 @@ class BaseRepository implements Respository{
     getAll = async(query = {}, sort = {}, pageSize : number = 5, pageNum : number = 1, attributes:string[]=[]) => {
         //skip - limit
         console.log('base.repository',query,sort,attributes,pageSize,pageNum);
-        const skips = pageSize * (pageNum - 1)
-        console.log(query,pageSize,pageNum)
+
         const resultTotalSize = await this.model.count(query);
         
         if(pageSize===-5497)
             pageSize = resultTotalSize;
+
+        const skips = pageSize * (pageNum - 1)
+        console.log(query,pageSize,pageNum)
 
         let result = [];
         if(resultTotalSize > 0){
