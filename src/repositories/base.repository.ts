@@ -29,6 +29,10 @@ class BaseRepository implements Respository{
         const skips = pageSize * (pageNum - 1)
         console.log(query,pageSize,pageNum)
         const resultTotalSize = await this.model.count(query);
+        
+        if(pageSize===-5497)
+            pageSize = resultTotalSize;
+
         let result = [];
         if(resultTotalSize > 0){
             const attr = {};
